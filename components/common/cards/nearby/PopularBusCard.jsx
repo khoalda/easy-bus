@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import styles from "./nearbyjobcard.style";
+import styles from "./PopularBusCard.style";
 import { checkImageURL } from "../../../../utils";
 
-const NearbyJobCard = ({ job, handleNavigate }) => {
+const PopularBusCard = ({ job, handleNavigate }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigate}>
       <TouchableOpacity style={styles.logoContainer}>
@@ -29,4 +29,4 @@ const NearbyJobCard = ({ job, handleNavigate }) => {
   );
 };
 
-export default NearbyJobCard;
+export default PopularBusCard;

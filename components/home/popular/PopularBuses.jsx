@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./PopularBuses.style";
 import { COLORS } from "../../../constants";
-import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
+import PopularBusCard from "../../common/cards/nearby/PopularBusCard";
 import useFetch from "../../../hook/useFetch";
 import { jobList } from "../../../constants/mockData";
 
@@ -35,7 +35,7 @@ const PopularBuses = () => {
           <Text>Something went wrong</Text>
         ) : (
           jobList?.map((job) => (
-            <NearbyJobCard
+            <PopularBusCard
               job={job}
               key={`nearby-job-${job.job_id}`}
               handleNavigate={() => router.push(`/bus-details/${job.job_id}`)}

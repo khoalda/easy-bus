@@ -12,9 +12,6 @@ import { default as JobAbout } from "./bus-details/about/About";
 import { default as JobFooter } from "./bus-details/footer/Footer";
 import Specifics from "./bus-details/specifics/Specifics";
 
-// common
-import NearbyJobCard from "./common/cards/nearby/NearbyJobCard";
-
 export {
   ScreenHeaderBtn,
   Welcome,
@@ -25,5 +22,4 @@ export {
   JobAbout,
   JobFooter,
   Specifics,
-  NearbyJobCard
 };

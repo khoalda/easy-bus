@@ -23,9 +23,6 @@ const Layout = () => {
   }
 
   return (
-    // <Stack initialRouteName="home">
-    //   <Stack.Screen name="home" />
-    // </Stack>
     <Tabs>
       <Tabs.Screen name="index" options={{
         href: null
@@ -42,17 +39,13 @@ const Layout = () => {
           // ),
           headerTitle: "Easy Bus",
       }} />
-      <Tabs.Screen name="find-route/index" options={{
+      <Tabs.Screen name="find-route" options={{
         title: 'Tìm đường',
+        headerShown: false
       }} />
-      <Tabs.Screen name="find-bus/index" options={{
+      <Tabs.Screen name="find-bus" options={{
         title: 'Tra cứu',
-      }} />
-      <Tabs.Screen name="find-route/[id]" options={{
-        href: null
-      }} />
-      <Tabs.Screen name="find-bus/[id]" options={{
-        href: null
+        headerShown: false
       }} />
     </Tabs>
   )

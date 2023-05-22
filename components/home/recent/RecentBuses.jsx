@@ -10,7 +10,7 @@ import {
 
 import styles from "./RecentBuses.style";
 import { COLORS, SIZES } from "../../../constants";
-import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import RecentBusCard from "../../common/cards/popular/RecentBusCard";
 import useFetch from "../../../hook/useFetch";
 import { jobList } from "../../../constants/mockData";
 
@@ -49,7 +49,7 @@ const RecentBuses = () => {
           <FlatList
             data={jobList}
             renderItem={({ item }) => (
-              <PopularJobCard
+              <RecentBusCard
                 item={item}
                 selectedJob={selectedJob}
                 handleCardPress={handleCardPress}
