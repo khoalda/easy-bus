@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { Tabs, Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, images, SIZES } from "../constants";
 import {
@@ -16,20 +16,6 @@ const Home = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-      <Stack.Screen
-        options={{
-          headerStyle: { backgroundColor: COLORS.lightWhite },
-          headerShadowVisible: false,
-          headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.logo} dimension='180%' />
-          ),
-          // headerRight: () => (
-          //   <ScreenHeaderBtn iconUrl={images.profile} dimension='100%' />
-          // ),
-          headerTitle: "Easy Bus",
-        }}
-      />
-
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
@@ -42,7 +28,7 @@ const Home = () => {
             setSearchTerm={setSearchTerm}
             handleClick={() => {
               if (searchTerm) {
-                router.push(`/search/${searchTerm}`)
+                router.push(`/find-route/${searchTerm}`)
               }
             }}
           />

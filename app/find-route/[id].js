@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, TouchableOpacity, View } from 'react-native'
-import { Stack, useRouter, useSearchParams } from 'expo-router'
+import { Stack, useRouter, useSearchParams, Tabs } from 'expo-router'
 import { Text, SafeAreaView } from 'react-native'
 import axios from 'axios'
 
@@ -61,7 +61,7 @@ const JobSearch = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
-            <Stack.Screen
+            <Tabs.Screen
                 options={{
                     headerStyle: { backgroundColor: COLORS.lightWhite },
                     headerShadowVisible: false,
@@ -81,7 +81,7 @@ const JobSearch = () => {
                 renderItem={({ item }) => (
                     <NearbyJobCard
                         job={item}
-                        handleNavigate={() => router.push(`/job-details/${item.job_id}`)}
+                        handleNavigate={() => router.push(`/bus-details/${item.job_id}`)}
                     />
                 )}
                 keyExtractor={(item) => item.job_id}
