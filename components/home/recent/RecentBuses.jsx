@@ -14,7 +14,7 @@ import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 import useFetch from "../../../hook/useFetch";
 import { jobList } from "../../../constants/mockData";
 
-const Popularjobs = () => {
+const RecentBuses = () => {
   const router = useRouter();
   // const { data, isLoading, error } = useFetch("search", {
   //   query: "React developer",
@@ -34,9 +34,9 @@ const Popularjobs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Popular jobs</Text>
+        <Text style={styles.headerTitle}>Các tuyến đi gần đây</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn}>Xem tất cả</Text>
         </TouchableOpacity>
       </View>
 
@@ -44,7 +44,7 @@ const Popularjobs = () => {
         {isLoading ? (
           <ActivityIndicator size='large' color={COLORS.primary} />
         ) : error ? (
-          <Text>Something went wrong</Text>
+          <Text>Đã có lỗi xảy ra</Text>
         ) : (
           <FlatList
             data={jobList}
@@ -65,4 +65,4 @@ const Popularjobs = () => {
   );
 };
 
-export default Popularjobs;
+export default RecentBuses;

@@ -20,10 +20,10 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.userName}>Hello Adrian</Text>
-        <Text style={styles.welcomeMessage}>Find your perfect job</Text>
-      </View>
+      {/* <View style={styles.container}>
+        <Text style={styles.userName}>Hello</Text>
+        <Text style={styles.welcomeMessage}>Find any place</Text>
+      </View> */}
 
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
@@ -31,7 +31,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
             style={styles.searchInput}
             value={searchTerm}
             onChangeText={(text) => setSearchTerm(text)}
-            placeholder='What are you looking for?'
+            placeholder='Bạn muốn đi đến đâu?'
           />
         </View>
 
@@ -45,7 +45,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
       </View>
 
       <View style={styles.tabsContainer}>
-        <FlatList
+        {/* <FlatList
           data={jobTypes}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -61,7 +61,7 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
           keyExtractor={(item) => item}
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
-        />
+        /> */}
       </View>
     </View>
   );
