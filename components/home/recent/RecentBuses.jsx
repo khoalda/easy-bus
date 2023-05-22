@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-import styles from "./popularjobs.style";
+import styles from "./RecentBuses.style";
 import { COLORS, SIZES } from "../../../constants";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
 import useFetch from "../../../hook/useFetch";

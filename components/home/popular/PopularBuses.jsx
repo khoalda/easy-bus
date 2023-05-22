@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
-import styles from "./nearbyjobs.style";
+import styles from "./PopularBuses.style";
 import { COLORS } from "../../../constants";
 import NearbyJobCard from "../../common/cards/nearby/NearbyJobCard";
 import useFetch from "../../../hook/useFetch";
 import { jobList } from "../../../constants/mockData";
 
-const Nearbyjobs = () => {
+const PopularBuses = () => {
   const router = useRouter();
   // const { data, isLoading, error } = useFetch("search", {
   //   query: "React Native developer",
@@ -22,9 +22,9 @@ const Nearbyjobs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Nearby jobs</Text>
+        <Text style={styles.headerTitle}>Các tuyến phổ biến</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn}>Xem tất cả</Text>
         </TouchableOpacity>
       </View>
 
@@ -47,4 +47,4 @@ const Nearbyjobs = () => {
   );
 };
 
-export default Nearbyjobs;
+export default PopularBuses;
