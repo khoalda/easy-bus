@@ -4,7 +4,7 @@ import React from 'react'
 const FindBus = () => {
   return (
     <View>
-      <Text>FindBus</Text>
+      <Text>List all buses</Text>
     </View>
   )
 }

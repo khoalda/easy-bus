@@ -10,7 +10,7 @@ import {
 
 import styles from "./RecentBuses.style";
 import { COLORS, SIZES } from "../../../constants";
-import RecentBusCard from "../../common/cards/popular/RecentBusCard";
+import RecentBusCard from "../../common/cards/recent/RecentBusCard";
 import useFetch from "../../../hook/useFetch";
 import { jobList } from "../../../constants/mockData";
 
@@ -27,7 +27,7 @@ const RecentBuses = () => {
   const [selectedJob, setSelectedJob] = useState();
 
   const handleCardPress = (item) => {
-    router.push(`/bus-details/${item.job_id}`);
+    router.push(`/find-bus/${item.job_id}`);
     setSelectedJob(item.job_id);
   };
 
@@ -35,7 +35,9 @@ const RecentBuses = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Các tuyến đi gần đây</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          router.push(`/find-bus`);
+        }}>
           <Text style={styles.headerBtn}>Xem tất cả</Text>
         </TouchableOpacity>
       </View>

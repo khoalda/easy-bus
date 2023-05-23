@@ -26,8 +26,8 @@ const Layout = () => {
   return (
     <Tabs screenOptions={{
       tabBarActiveTintColor: COLORS.tertiary,
-      tabBarInactiveTintColor: COLORS.gray
-    }}>
+      tabBarInactiveTintColor: COLORS.gray,
+    }} >
       <Tabs.Screen name="index" options={{
         href: null
       }} />

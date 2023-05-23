@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 
 import styles from "./PopularBuses.style";
 import { COLORS } from "../../../constants";
-import PopularBusCard from "../../common/cards/nearby/PopularBusCard";
+import PopularBusCard from "../../common/cards/popular/PopularBusCard";
 import useFetch from "../../../hook/useFetch";
 import { jobList } from "../../../constants/mockData";
 
@@ -18,12 +18,15 @@ const PopularBuses = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, serError] = useState(false);
 
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Các tuyến phổ biến</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            router.push(`/find-bus`);
+          }}
+        >
           <Text style={styles.headerBtn}>Xem tất cả</Text>
         </TouchableOpacity>
       </View>
@@ -38,7 +41,7 @@ const PopularBuses = () => {
             <PopularBusCard
               job={job}
               key={`nearby-job-${job.job_id}`}
-              handleNavigate={() => router.push(`/bus-details/${job.job_id}`)}
+              handleNavigate={() => router.push(`/find-bus/${job.job_id}`)}
             />
           ))
         )}
