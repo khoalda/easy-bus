@@ -1,5 +1,23 @@
-import { Redirect } from "expo-router";
-
+import { Redirect, SplashScreen } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 export default function Index() {
-    return <Redirect href="/home" />;
+  const [showOnboarding, setShowOnboarding] = useState(true);
+  useEffect(() => {
+    AsyncStorage.getItem("onboardingCompleted").then((value) => {
+      if (value) {
+        setShowOnboarding(false);
+      }
+    });
+  }, []);
+
+  return (
+    <>
+      {showOnboarding ? (
+        <Redirect href="/onboarding" />
+      ) : (
+        <Redirect href="/home" />
+      )}
+    </>
+  );
 }
