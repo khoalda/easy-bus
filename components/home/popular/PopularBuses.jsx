@@ -40,8 +40,8 @@ const PopularBuses = () => {
           jobList?.map((job) => (
             <PopularBusCard
               job={job}
-              key={`nearby-job-${job.job_id}`}
-              handleNavigate={() => router.push(`/find-bus/${job.job_id}`)}
+              key={`popular-bus-${job.job_id}`}
+              handleNavigate={() => router.push(`find-bus/${job.job_id}`)}
             />
           ))
         )}

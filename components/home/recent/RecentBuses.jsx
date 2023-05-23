@@ -27,7 +27,7 @@ const RecentBuses = () => {
   const [selectedJob, setSelectedJob] = useState();
 
   const handleCardPress = (item) => {
-    router.push(`/find-bus/${item.job_id}`);
+    router.push(`find-bus/${item.job_id}`);
     setSelectedJob(item.job_id);
   };
 
