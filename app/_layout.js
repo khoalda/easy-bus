@@ -2,6 +2,8 @@ import { Stack, Tabs } from "expo-router";
 import { useFonts } from "expo-font";
 // import * as SplashScreen from "expo-splash-screen";
 // SplashScreen.preventAutoHideAsync();
+import { SplashScreen } from "expo-router";
+
 
 export const unstable_settings = {
   // Ensure any route can link back to `/`
@@ -16,7 +18,7 @@ const Layout = () => {
   });
 
   if (!fontsLoaded) {
-    return null;
+    return <SplashScreen />;
   }
 
   return (

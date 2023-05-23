@@ -30,7 +30,6 @@ export default Onboarding = ({ item, data, scrollX, currentIndex }) => {
       opacity.setValue(0);
       titleOpacity.setValue(0);
       descriptionOpacity.setValue(0);
-      console.log('changed', currentIndex + 1, parseInt(item.id))
     }
     else{
       fadeIn(opacity);

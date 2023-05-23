@@ -20,8 +20,8 @@ export default Onboarding = () => {
     AsyncStorage.setItem("onboardingCompleted", "true");
     console.log("handled Onboarding");
   };
+
   const router = useRouter();
-  console.log("onboarding");
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
