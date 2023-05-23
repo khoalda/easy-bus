@@ -73,13 +73,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "800",
-    fontSize: 28,
+    fontSize: 25,
     marginBottom: 10,
     color: "#F28624",
     textAlign: "center",
+    paddingHorizontal: 20,
   },
   description: {
     fontWeight: "300",
+    fontSize: 18,
     color: "#62656b",
     textAlign: "center",
     paddingHorizontal: 64,

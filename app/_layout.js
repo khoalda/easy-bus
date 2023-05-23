@@ -23,7 +23,10 @@ const Layout = () => {
     <Stack>
       <Stack.Screen name="(tabs)" options={{
         headerShown: false
-      }}/>
+      }} />
+      <Stack.Screen name="onboarding/index" options={{
+        headerShown: false
+      }} />
     </Stack>
   )
 };
