@@ -24,7 +24,8 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{
-        headerShown: false
+        headerShown: false,
+        gestureEnabled: false,
       }} />
       <Stack.Screen name="onboarding/index" options={{
         headerShown: false

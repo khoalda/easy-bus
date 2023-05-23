@@ -1,4 +1,4 @@
-import React ,{useRef,useState} from "react";
+import React, { useRef, useState } from "react";
 
 import {
   View,
@@ -15,7 +15,7 @@ export default Onboarding = ({ item, data, scrollX, currentIndex }) => {
   const opacity = new Animated.Value(0);
   const titleOpacity = new Animated.Value(0);
   const descriptionOpacity = new Animated.Value(0);
-  const [animated, setAnimated] = useState(false)
+  const [animated, setAnimated] = useState(false);
 
   const fadeIn = (value) => {
     Animated.timing(value, {
@@ -26,15 +26,14 @@ export default Onboarding = ({ item, data, scrollX, currentIndex }) => {
   };
 
   React.useEffect(() => {
-    if (currentIndex + 1 != parseInt(item.id)){
+    if (currentIndex + 1 != parseInt(item.id)) {
       opacity.setValue(0);
       titleOpacity.setValue(0);
       descriptionOpacity.setValue(0);
-    }
-    else{
+    } else {
       fadeIn(opacity);
       fadeIn(titleOpacity);
-      fadeIn(descriptionOpacity)
+      fadeIn(descriptionOpacity);
     }
   }, [currentIndex]);
 

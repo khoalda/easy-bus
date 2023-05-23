@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Tabs, Stack, useRouter } from "expo-router";
 
@@ -13,7 +13,6 @@ import {
 const Home = () => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <ScrollView showsVerticalScrollIndicator={false}>
