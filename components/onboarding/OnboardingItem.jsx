@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
   Animated,
 } from "react-native";
-import Paginator from "./Paginator";
+import Paginator from "../../app/onboarding/Paginator";
 
 export default Onboarding = ({ item, data, scrollX, currentIndex }) => {
   const { width } = useWindowDimensions();

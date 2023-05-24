@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import slides from "./slides";
-import OnboardingItem from "./OnboardingItem.jsx";
+import slides from "../../constants/slides";
+import OnboardingItem from "../../components/onboarding/OnboardingItem";
 import Paginator from "./Paginator";
-import styles from "./onboarding.style";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS } from "../../constants";
+import { StyleSheet } from "react-native";
+
 
 export default Onboarding = () => {
   const handleOnboardingComplete = () => {
@@ -110,3 +111,54 @@ export default Onboarding = () => {
     </SafeAreaView>
   );
 };
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  skipButton: {
+    paddingVertical: 15,
+    paddingHorizontal: 50,
+    borderRadius: 5,
+    marginLeft: "auto",
+    text: {
+      color: "#F28624",
+      fontSize: 16,
+    },
+  },
+  navContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  backButton: {
+    paddingVertical: 15,
+    borderRadius: 5,
+    marginRight: 50,
+    width: 130,
+
+    alignItems: "center",
+    justifyContent: "center",
+    text: {
+      color: "#F28624",
+      fontSize: 16,
+      fontWeight: "bold",
+    },
+  },
+  nextButton: {
+    backgroundColor: "#F28624",
+    paddingVertical: 15,
+    borderRadius: 5,
+    width: 130,
+    alignItems: "center",
+    justifyContent: "center",
+    text: {
+      color: "#fff",
+      fontSize: 16,
+      fontWeight: "bold",
+    },
+  },
+});
