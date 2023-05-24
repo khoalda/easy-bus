@@ -12,7 +12,7 @@ import styles from "./RecentBuses.style";
 import { COLORS, SIZES } from "../../../constants";
 import RecentBusCard from "../../common/cards/recent/RecentBusCard";
 import useFetch from "../../../hook/useFetch";
-import { jobList } from "../../../constants/mockData";
+import { busList } from "../../../constants/mockData";
 
 const RecentBuses = () => {
   const router = useRouter();
@@ -23,23 +23,22 @@ const RecentBuses = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, serError] = useState(false);
-
-  const [selectedJob, setSelectedJob] = useState();
+  const [selectedBus, setSelectedBus] = useState('1_1');
 
   const handleCardPress = (item) => {
-    router.push(`find-bus/${item.job_id}`);
-    setSelectedJob(item.job_id);
+    router.push(`find-bus/${item.id}`);
+    setSelectedBus(item.id);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Các tuyến đi gần đây</Text>
-        <TouchableOpacity onPress={() => {
+        {/* <TouchableOpacity onPress={() => {
           router.push(`/find-bus`);
         }}>
           <Text style={styles.headerBtn}>Xem tất cả</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <View style={styles.cardsContainer}>
@@ -49,15 +48,15 @@ const RecentBuses = () => {
           <Text>Đã có lỗi xảy ra</Text>
         ) : (
           <FlatList
-            data={jobList}
+            data={busList}
             renderItem={({ item }) => (
               <RecentBusCard
                 item={item}
-                selectedJob={selectedJob}
+                selectedBus={selectedBus}
                 handleCardPress={handleCardPress}
               />
             )}
-            keyExtractor={(item) => item.job_id}
+            keyExtractor={(item) => item.id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
           />

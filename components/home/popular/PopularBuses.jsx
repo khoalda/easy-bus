@@ -6,7 +6,7 @@ import styles from "./PopularBuses.style";
 import { COLORS } from "../../../constants";
 import PopularBusCard from "../../common/cards/popular/PopularBusCard";
 import useFetch from "../../../hook/useFetch";
-import { jobList } from "../../../constants/mockData";
+import { busList } from "../../../constants/mockData";
 
 const PopularBuses = () => {
   const router = useRouter();
@@ -37,11 +37,11 @@ const PopularBuses = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ) : (
-          jobList?.map((job) => (
+          busList?.map((bus) => (
             <PopularBusCard
-              job={job}
-              key={`popular-bus-${job.job_id}`}
-              handleNavigate={() => router.push(`find-bus/${job.job_id}`)}
+              bus={bus}
+              key={`popular-bus-${bus.id}`}
+              handleNavigate={() => router.push(`find-bus/${bus.id}`)}
             />
           ))
         )}

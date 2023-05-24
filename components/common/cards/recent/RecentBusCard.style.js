@@ -3,26 +3,28 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
-  container: (selectedJob, item) => ({
+  container: (selectedBus, item) => ({
     width: 250,
     padding: SIZES.xLarge,
-    backgroundColor: selectedJob === item.job_id ? COLORS.primary : "#FFF",
+    backgroundColor: selectedBus === item.id ? COLORS.primary : "#FFF",
     borderRadius: SIZES.medium,
     justifyContent: "space-between",
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
   }),
-  logoContainer: (selectedJob, item) => ({
+  logoContainer: (selectedBus, item) => ({
     width: 50,
     height: 50,
-    backgroundColor: selectedJob === item.job_id ? "#FFF" : COLORS.white,
+    backgroundColor: selectedBus === item.id ? "#FFF" : COLORS.white,
     borderRadius: SIZES.medium,
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }),
-  logoImage: {
-    width: "70%",
-    height: "70%",
+  logImage: {
+    fontWeight: 900,
+    fontSize: 20,
+    color: COLORS.tertiary
   },
   companyName: {
     fontSize: SIZES.medium,
@@ -33,10 +35,10 @@ const styles = StyleSheet.create({
   infoContainer: {
     marginTop: SIZES.large,
   },
-  jobName: (selectedJob, item) => ({
+  jobName: (selectedBus, item) => ({
     fontSize: SIZES.large,
     fontFamily: FONT.medium,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+    color: selectedBus === item.id ? COLORS.white : COLORS.primary,
   }),
   infoWrapper: {
     flexDirection: "row",
@@ -44,10 +46,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  publisher: (selectedJob, item) => ({
+  publisher: (selectedBus, item) => ({
     fontSize: SIZES.medium - 2,
     fontFamily: FONT.regular,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+    color: selectedBus === item.id ? COLORS.white : COLORS.primary,
   }),
   location: {
     fontSize: SIZES.medium - 2,

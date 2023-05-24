@@ -21,7 +21,7 @@ const SearchBusBox = () => {
           style={styles.searchInput}
           value={search}
           onChangeText={(text) => setSearch(text)}
-          placeholder="Nhập số tuyến"
+          placeholder="Nhập số tuyến hoặc tên tuyến"
         />
       </View>
 

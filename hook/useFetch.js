@@ -8,11 +8,7 @@ const useFetch = (endpoint, query) => {
 
   const options = {
     method: "GET",
-    url: `https://jsearch.p.rapidapi.com/${endpoint}`,
-    headers: {
-      "X-RapidAPI-Key": '',
-      "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-    },
+    url: `https://easy-bus-backend-production.up.railway.app/${endpoint}`,
     params: { ...query },
   };
 
@@ -22,7 +18,7 @@ const useFetch = (endpoint, query) => {
     try {
       const response = await axios.request(options);
 
-      setData(response.data.data);
+      setData(response.data);
       setIsLoading(false);
     } catch (error) {
       setError(error);

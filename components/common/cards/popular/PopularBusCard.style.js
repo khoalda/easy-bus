@@ -19,12 +19,14 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: COLORS.white,
     borderRadius: SIZES.medium,
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   logImage: {
-    width: "70%",
-    height: "70%",
+    fontWeight: 900,
+    fontSize: 20,
+    color: COLORS.tertiary
   },
   textContainer: {
     flex: 1,

@@ -11,10 +11,17 @@ import styles from "./BusList.style";
 import { jobList } from "../../../constants/mockData";
 import { COLORS, SIZES } from "../../../constants";
 import PopularBusCard from "../../common/cards/popular/PopularBusCard";
+import useFetch from "../../../hook/useFetch";
+import axios from "axios";
 
-const BusList = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, serError] = useState(false);
+const BusList = ({ search }) => {
+  const { data, isLoading, error } = useFetch("vars", {
+    search,
+  });
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <View style={styles.listContainer}>
@@ -24,15 +31,15 @@ const BusList = () => {
         <Text>Đã có lỗi xảy ra</Text>
       ) : (
         <FlatList
-          data={jobList}
+          data={data}
           renderItem={({ item }) => (
             <PopularBusCard
-              job={item}
-              key={`popular-bus-${item.job_id}`}
-              handleNavigate={() => router.push(`find-bus/${item.job_id}`)}
+              bus={item}
+              key={`popular-bus-${item.id}`}
+              handleNavigate={() => router.push(`find-bus/${item.id}`)}
             />
           )}
-          keyExtractor={(item) => item.job_id}
+          keyExtractor={(item) => item.id}
           contentContainerStyle={{ columnGap: SIZES.medium }}
         />
       )}
