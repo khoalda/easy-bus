@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import styles from "./PopularBusCard.style";
-import { checkImageURL } from "../../../../utils";
+import { convertToTime } from "../../../../utils";
 
 const PopularBusCard = ({ bus, handleNavigate }) => {
   return (
@@ -12,10 +12,12 @@ const PopularBusCard = ({ bus, handleNavigate }) => {
 
       <View style={styles.textContainer}>
         <Text style={styles.jobName} numberOfLines={1}>
-          {"Xe số " + bus?.no}
+          {bus?.name}
         </Text>
 
-        <Text style={styles.jobType}>{bus?.name}</Text>
+        <Text style={styles.jobType}>
+          {convertToTime(bus?.dateStart)}-{convertToTime(bus?.dateEnd)}
+        </Text>
       </View>
     </TouchableOpacity>
   );

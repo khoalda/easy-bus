@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import styles from "./RecentBusCard.style";
-import { checkImageURL } from "../../../../utils";
+import { convertToTime } from "../../../../utils";
 
 const RecentBusCard = ({ item, selectedBus, handleCardPress }) => {
   return (
@@ -22,9 +22,9 @@ const RecentBusCard = ({ item, selectedBus, handleCardPress }) => {
         </Text>
         <View style={styles.infoWrapper}>
           <Text style={styles.publisher(selectedBus, item)}>
-            5H30 - 19H45{" "}
+          {convertToTime(item?.dateStart)}-{convertToTime(item?.dateEnd)}{" "}
           </Text>
-          <Text style={styles.location}>(7K VND)</Text>
+          <Text style={styles.location}>{`(${item?.price} VND)`}</Text>
         </View>
       </View>
     </TouchableOpacity>

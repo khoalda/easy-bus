@@ -6,3 +6,9 @@ export const checkImageURL = (url) => {
     }
 };
 
+
+export const convertToTime = (decimalHours) => {
+    var hours = Math.floor(decimalHours);
+    var minutes = Math.floor((decimalHours - hours) * 60);
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}

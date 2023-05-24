@@ -2,102 +2,182 @@ export const busList = [
     {
         "id": "1_1",
         "name": "Bến Thành- BX Chợ Lớn",
-        "no": 1
-    },
-    {
-        "id": "2_1",
-        "name": "Bến Thành- BX Miền Tây",
-        "no": 2
-    },
-    {
-        "id": "3_1",
-        "name": "Bến Thành- Thạnh Lộc",
-        "no": 3
-    },
-    {
-        "id": "4_1",
-        "name": "Bến Thành- Cộng Hòa- An Sương",
-        "no": 4
-    },
-    {
-        "id": "5_1",
-        "name": "Bến xe Chợ Lớn - Biên Hòa",
-        "no": 5
-    },
-    {
-        "id": "6_1",
-        "name": "Bến xe Chợ Lớn- Đại học Nông Lâm",
-        "no": 6
-    },
-    {
-        "id": "7_1",
-        "name": "Bến xe Chợ Lớn- Gò vấp",
-        "no": 7
-    },
-    {
-        "id": "8_1",
-        "name": "Bến xe Quận 8- Đại học Quốc Gia",
-        "no": 8
-    },
-    {
-        "id": "9_1",
-        "name": "Chợ Lớn - Bình Chánh - Hưng Long",
-        "no": 9
+        "no": "1",
+        "dateStart": 5,
+        "dateEnd": 21,
+        "price": 5000,
+        "studentPrice": 2000
     },
     {
         "id": "10_1",
         "name": "Đại học Quốc Gia- Bến xe Miền Tây",
-        "no": 10
+        "no": "10",
+        "dateStart": 5,
+        "dateEnd": 21,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "17_1",
         "name": "Bến Thành- Đầm Sen",
-        "no": 11
+        "no": "11",
+        "dateStart": 5,
+        "dateEnd": 21,
+        "price": 5000,
+        "studentPrice": 2000
     },
     {
         "id": "19_1",
         "name": "Bến Thành - Thác Giang Điền",
-        "no": 12
+        "no": "12",
+        "dateStart": 5,
+        "dateEnd": 21,
+        "price": 5000,
+        "studentPrice": 2000
     },
     {
         "id": "24_1",
         "name": "Bến Thành- Bến xe Củ Chi",
-        "no": 13
+        "no": "13",
+        "dateStart": 5,
+        "dateEnd": 22,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "26_1",
         "name": "Miền Đông- 3 tháng 2- Miền Tây",
-        "no": 14
+        "no": "14",
+        "dateStart": 5,
+        "dateEnd": 21,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "34_1",
         "name": "Bến Phú Định- Đầm Sen",
-        "no": 15
+        "no": "15",
+        "dateStart": 5,
+        "dateEnd": 22,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "38_1",
         "name": "Bến xe Chợ Lớn - Bến xe Tân Phú",
-        "no": 16
+        "no": "16",
+        "dateStart": 5,
+        "dateEnd": 22.5,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "39_1",
         "name": "Bến Xe Chợ Lớn - ĐH Sài Gòn - KCX Tân Thuận",
-        "no": 17
+        "no": "17",
+        "dateStart": 5,
+        "dateEnd": 22.5,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "40_1",
         "name": "Bến Thành - Chợ Hiệp Thành",
-        "no": 18
+        "no": "18",
+        "dateStart": 4.5,
+        "dateEnd": 22,
+        "price": 5000,
+        "studentPrice": 2000
     },
     {
         "id": "41_1",
         "name": "Bến Thành - Khu Chế Xuất Linh Trung - Đại Học Quốc Gia",
-        "no": 19
+        "no": "19",
+        "dateStart": 4.5,
+        "dateEnd": 20,
+        "price": 5000,
+        "studentPrice": 2000
+    },
+    {
+        "id": "2_1",
+        "name": "Bến Thành- BX Miền Tây",
+        "no": "2",
+        "dateStart": 5.5,
+        "dateEnd": 22,
+        "price": 7000,
+        "studentPrice": 3000
     },
     {
         "id": "42_1",
         "name": "Bến Thành - Nhà Bè",
-        "no": 20
+        "no": "20",
+        "dateStart": 4.5,
+        "dateEnd": 22,
+        "price": 7000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "3_1",
+        "name": "Bến Thành- Thạnh Lộc",
+        "no": "3",
+        "dateStart": 5,
+        "dateEnd": 22,
+        "price": 7000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "4_1",
+        "name": "Bến Thành- Cộng Hòa- An Sương",
+        "no": "4",
+        "dateStart": 5,
+        "dateEnd": 22,
+        "price": 7000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "5_1",
+        "name": "Bến xe Chợ Lớn - Biên Hòa",
+        "no": "5",
+        "dateStart": 5,
+        "dateEnd": 20,
+        "price": 7000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "6_1",
+        "name": "Bến xe Chợ Lớn- Đại học Nông Lâm",
+        "no": "6",
+        "dateStart": 5,
+        "dateEnd": 22.5,
+        "price": 7000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "7_1",
+        "name": "Bến xe Chợ Lớn- Gò vấp",
+        "no": "7",
+        "dateStart": 4,
+        "dateEnd": 22,
+        "price": 6000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "8_1",
+        "name": "Bến xe Quận 8- Đại học Quốc Gia",
+        "no": "8",
+        "dateStart": 5,
+        "dateEnd": 20.5,
+        "price": 6000,
+        "studentPrice": 3000
+    },
+    {
+        "id": "9_1",
+        "name": "Chợ Lớn - Bình Chánh - Hưng Long",
+        "no": "9",
+        "dateStart": 5,
+        "dateEnd": 22,
+        "price": 6000,
+        "studentPrice": 3000
     }
 ]
 
