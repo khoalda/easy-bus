@@ -29,7 +29,12 @@ const Tabs = ({ tabs, activeTab, setActiveTab }) => {
             onHandleSearchType={() => setActiveTab(item)}
           />
         )}
-        contentContainerStyle={{ columnGap: SIZES.small / 2 }}
+        contentContainerStyle={{
+          columnGap: SIZES.small / 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexGrow: 1
+        }}
         keyExtractor={(item) => item}
       />
     </View>
