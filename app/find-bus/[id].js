@@ -53,7 +53,8 @@ const JobDetails = () => {
         return (
           <Specifics
             title='Các trạm đi qua'
-            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+            varId={params.id}
+            routeVarId={data[0].RouteVarId}
           />
         );
 
@@ -111,7 +112,7 @@ const JobDetails = () => {
           )}
         </ScrollView>
 
-        <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
+        {/* <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} /> */}
       </>
     </SafeAreaView>
   );

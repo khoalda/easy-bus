@@ -1,17 +1,22 @@
 import { View, Text } from "react-native";
-
 import styles from "./Specifics.style";
+import useFetch from "../../../hook/useFetch";
 
-const Specifics = ({ title, points }) => {
+
+const Specifics = ({ title, varId, routeVarId }) => {
+  const { data, isLoading, error, refetch } = useFetch(`stops/${varId}/${routeVarId}`);
+
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}:</Text>
 
       <View style={styles.pointsContainer}>
-        {points.map((item, index) => (
-          <View style={styles.pointWrapper} key={item + index}>
+        {data?.map((item, index) => (
+          <View style={styles.pointWrapper} key={index}>
             <View style={styles.pointDot} />
-            <Text style={styles.pointText}>{item}</Text>
+            <Text style={styles.pointText}>{item.Name}</Text>
           </View>
         ))}
       </View>

@@ -29,5 +29,4 @@ export const getOrderedTime = (time1, time2) => {
     } else {
         return `${smallerTime} - ${largerTime}`;
     }
-
 };
