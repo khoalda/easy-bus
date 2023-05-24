@@ -30,6 +30,14 @@ const Layout = () => {
       <Stack.Screen name="onboarding/index" options={{
         headerShown: false
       }} />
+      <Stack.Screen name="find-route/recommendation" options={{
+        // headerShown: false,
+        presentation: "modal"
+      }} />
+      <Stack.Screen name="find-route/route-detail" options={{
+        // headerShown: false,
+        presentation: "modal"
+      }} />
     </Stack>
   )
 };
