@@ -20,7 +20,7 @@ import {
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
 
-const tabs = ["Thông tin chung", "Các trạm đi qua"];
+const tabs = ["Thông tin chung", "Các trạm đi qua", "Bản đồ"];
 
 const JobDetails = () => {
   const params = useSearchParams();
@@ -53,6 +53,15 @@ const JobDetails = () => {
         return (
           <Specifics
             title='Các trạm đi qua'
+            varId={params.id}
+            routeVarId={data[0].RouteVarId}
+          />
+        );
+
+      case "Bản đồ":
+        return (
+          <Specifics
+            title='Bản đồ'
             varId={params.id}
             routeVarId={data[0].RouteVarId}
           />
