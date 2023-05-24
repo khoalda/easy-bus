@@ -2,7 +2,6 @@ import { View, SafeAreaView } from 'react-native'
 import React from 'react'
 import { COLORS, SIZES } from '../../constants'
 import BusList from '../../components/find-bus/bus-list/BusList'
-import SearchBusBox from '../../components/find-bus/search-box/SearchBusBox'
 
 const FindBus = () => {
   return (
@@ -13,7 +12,6 @@ const FindBus = () => {
           padding: SIZES.medium,
         }}
       >
-        <SearchBusBox />
         <BusList />
       </View>
     </SafeAreaView>

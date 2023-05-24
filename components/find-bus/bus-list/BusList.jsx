@@ -4,46 +4,80 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
+  TextInput,
+  Image,
 } from "react-native";
 
 import React, { useEffect, useState } from "react";
 import styles from "./BusList.style";
-import { jobList } from "../../../constants/mockData";
-import { COLORS, SIZES } from "../../../constants";
+import { COLORS, SIZES, icons } from "../../../constants";
 import PopularBusCard from "../../common/cards/popular/PopularBusCard";
 import useFetch from "../../../hook/useFetch";
-import axios from "axios";
+import { useRouter } from "expo-router";
 
-const BusList = ({ search }) => {
-  const { data, isLoading, error } = useFetch("vars", {
+const BusList = () => {
+  const router = useRouter();
+  const [search, setSearch] = useState("");
+
+  const { data, isLoading, error, refetch } = useFetch("vars", {
     search,
   });
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const handleClick = () => {
+    refetch();
+  };
 
   return (
-    <View style={styles.listContainer}>
-      {isLoading ? (
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      ) : error ? (
-        <Text>Đã có lỗi xảy ra</Text>
-      ) : (
-        <FlatList
-          data={data}
-          renderItem={({ item }) => (
-            <PopularBusCard
-              bus={item}
-              key={`popular-bus-${item.id}`}
-              handleNavigate={() => router.push(`find-bus/${item.id}`)}
+    <>
+      <View style={styles.listContainer}>
+        <View style={styles.searchContainer}>
+          <View style={styles.searchWrapper}>
+            <TextInput
+              style={styles.searchInput}
+              value={search}
+              onChangeText={(text) => setSearch(text)}
+              placeholder="Nhập số tuyến hoặc tên tuyến"
+              onSubmitEditing={refetch}
+            />
+          </View>
+
+          <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
+            <Image
+              source={icons.search}
+              resizeMode="contain"
+              style={styles.searchBtnImage}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            marginTop: SIZES.small,
+          }}
+        >
+          {isLoading ? (
+            <ActivityIndicator size="large" color={COLORS.primary} />
+          ) : error ? (
+            <Text>Đã có lỗi xảy ra</Text>
+          ) : (
+            <FlatList
+              data={data}
+              renderItem={({ item }) => (
+                <PopularBusCard
+                  bus={item}
+                  key={`popular-bus-${item.id}`}
+                  handleNavigate={() => router.push(`find-bus/${item.id}`)}
+                />
+              )}
+              keyExtractor={(item) => item.id}
+              contentContainerStyle={{
+                columnGap: SIZES.medium,
+                rowGap: SIZES.small,
+              }}
             />
           )}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={{ columnGap: SIZES.medium }}
-        />
-      )}
-    </View>
+        </View>
+      </View>
+    </>
   );
 };
 
