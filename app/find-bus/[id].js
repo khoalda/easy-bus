@@ -1,5 +1,5 @@
 import { Stack, useRouter, useSearchParams } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import {
-  Company,
+  Logo,
   JobAbout,
   JobFooter,
   JobTabs,
@@ -19,7 +19,6 @@ import {
 } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
-import { jobDetails as data } from "../../constants/mockData";
 
 const tabs = ["About", "Qualifications", "Responsibilities"];
 
@@ -27,12 +26,7 @@ const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
 
-  // const { data, isLoading, error, refetch } = useFetch("job-details", {
-  //   job_id: params.id,
-  // });
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, serError] = useState(false);
+  const { data, isLoading, error, refetch } = useFetch(`vars/${params.id}`);
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [refreshing, setRefreshing] = useState(false);
@@ -42,6 +36,10 @@ const JobDetails = () => {
     refetch()
     setRefreshing(false)
   }, []);
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
 
   const displayTabContent = () => {
@@ -106,11 +104,8 @@ const JobDetails = () => {
             <Text>No data available</Text>
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-              <Company
-                companyLogo={data[0].employer_logo}
-                jobTitle={data[0].job_title}
-                companyName={data[0].employer_name}
-                location={data[0].job_country}
+              <Logo
+                no={data[0].RouteNo}
               />
 
               <JobTabs

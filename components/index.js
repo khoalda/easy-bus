@@ -6,7 +6,7 @@ import PopularBuses from "./home/popular/PopularBuses";
 import RecentBuses from "./home/recent/RecentBuses";
 
 // job details screen
-import Company from "./bus-details/company/Company";
+import Logo from "./bus-details/logo/Logo";
 import { default as JobTabs } from "./bus-details/tabs/Tabs";
 import { default as JobAbout } from "./bus-details/about/About";
 import { default as JobFooter } from "./bus-details/footer/Footer";
@@ -17,7 +17,7 @@ export {
   Welcome,
   PopularBuses,
   RecentBuses,
-  Company,
+  Logo,
   JobTabs,
   JobAbout,
   JobFooter,
