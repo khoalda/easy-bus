@@ -28,12 +28,14 @@ export default () => {
             }} />
             <Tabs.Screen name="find-route" options={{
                 title: 'Tìm đường',
+                headerStyle: { backgroundColor: COLORS.lightWhite },
                 tabBarIcon: ({ color }) => {
                     return <FontAwesome name="map" size={20} color={color} />
                 },
             }} />
             <Tabs.Screen name="find-bus" options={{
                 title: 'Tra cứu',
+                headerStyle: { backgroundColor: COLORS.lightWhite },
                 tabBarIcon: ({ color }) => {
                     return <FontAwesome name="search" size={20} color={color} />
                 },
