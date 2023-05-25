@@ -11,12 +11,11 @@ import { useRouter } from "expo-router";
 
 import styles from "./Welcome.style";
 import { icons, SIZES } from "../../../constants";
-
-const jobTypes = ["Full-time", "Part-time", "Contractor"];
+import { allStops } from "../../../constants/mockData";
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
-  const router = useRouter();
-  const [activeJobType, setActiveJobType] = useState("Full-time");
+  const [matchingStops, setMatchingStops] = useState([]);
+  const [showMatchingStops, setShowMatchingStops] = useState(false);
 
   return (
     <View>
@@ -29,9 +28,37 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
           <TextInput
             style={styles.searchInput}
             value={searchTerm}
-            onChangeText={(text) => setSearchTerm(text)}
+            onChangeText={(text) => {
+              setSearchTerm(text);
+              // setMatchingStops(
+              //   allStops.filter((stop) =>
+              //     stop.toLowerCase().includes(text.toLowerCase())
+              //   )
+              // );
+              // setShowMatchingStops(text !== "" && matchingStops.length > 0);
+            }}
             placeholder="Bạn muốn đi đến đâu?"
           />
+
+          {/* {showMatchingStops && (
+            <FlatList
+              data={matchingStops}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.matchingStopItem}
+                  onPress={() => {
+                    setSearchTerm(item);
+                    setMatchingStops([]);
+                    setShowMatchingStops(false);
+                  }}
+                >
+                  <Text>{item}</Text>
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item) => item.ID}
+              style={styles.matchingStopsList}
+            />
+          )} */}
         </View>
 
         <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
@@ -42,26 +69,6 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
           />
         </TouchableOpacity>
       </View>
-
-      {/* <View style={styles.tabsContainer}>
-        <FlatList
-          data={jobTypes}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
-              onPress={() => {
-                setActiveJobType(item);
-                router.push(`/search/${item}`);
-              }}
-            >
-              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item}
-          contentContainerStyle={{ columnGap: SIZES.small }}
-          horizontal
-        />
-      </View> */}
     </View>
   );
 };

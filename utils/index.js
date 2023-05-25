@@ -17,14 +17,16 @@ export const calculateAverage = (distance1, distance2) => {
     const num1 = parseFloat(distance1);
     const num2 = parseFloat(distance2);
     const average = (num1 + num2) / 2 / 1000;
-    return average.toFixed(2); // Assuming you want to display the average with two decimal places
+    return average.toFixed(2);
 };
 
 export const getOrderedTime = (time1, time2) => {
     const smallerTime = parseInt(time1);
     const largerTime = parseInt(time2);
 
-    if (smallerTime > largerTime) {
+    if (smallerTime === largerTime) {
+        return time1;
+    } else if (smallerTime > largerTime) {
         return `${largerTime} - ${smallerTime}`;
     } else {
         return `${smallerTime} - ${largerTime}`;

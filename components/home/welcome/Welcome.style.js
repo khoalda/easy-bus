@@ -67,6 +67,21 @@ const styles = StyleSheet.create({
     fontFamily: FONT.medium,
     color: activeJobType === item ? COLORS.secondary : COLORS.gray2,
   }),
+  matchingStopsList: {
+    position: "absolute",
+    top: SIZES.searchInputHeight + SIZES.small,
+    left: 0,
+    right: 0,
+    maxHeight: 200,
+    backgroundColor: "#fff",
+    zIndex: 1,
+    elevation: 1,
+  },
+  matchingStopItem: {
+    padding: SIZES.small,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
 });
 
 export default styles;

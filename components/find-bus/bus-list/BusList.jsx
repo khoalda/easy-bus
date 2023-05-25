@@ -60,7 +60,7 @@ const BusList = () => {
             <Text>Đã có lỗi xảy ra</Text>
           ) : (
             <FlatList
-              data={data}
+              data={data.sort((a, b) => Number(a.no) - Number(b.no))}
               renderItem={({ item }) => (
                 <PopularBusCard
                   bus={item}
