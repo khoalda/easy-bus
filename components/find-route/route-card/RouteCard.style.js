@@ -5,7 +5,7 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
   container: {
     width: 250,
-    maxHeight: 200,
+    height: 200,
     padding: SIZES.xLarge,
     backgroundColor: COLORS.primary,
     alignItems: "center",

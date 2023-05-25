@@ -1,17 +1,39 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./RouteOption.style";
-const RouteOption = ({}) => {
+import { useEffect } from "react";
+import { useRouter } from "expo-router";
+
+const RouteOption = ({ route }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.back();
+    router.push(`find-route/route-detail?route=${JSON.stringify(route)}`);
+  }
+
   return (
-    <TouchableOpacity style={styles.container}>
-      <View style={styles.infoContainer}>
-        <Text>23 phút, 1 chuyến</Text>
-        <View style={styles.nameContainer}>
-          <Text>Xe 50</Text>
-          <Text>Bách khoa, CS2</Text>
-        </View>
-      </View>
+    <TouchableOpacity style={styles.container} onPress={handleClick}>
+      <Text
+        style={{
+          fontWeight: 900,
+          fontSize: 18,
+          marginBottom: 10,
+        }}
+      >
+        {route.Title}
+      </Text>
+      <Text
+        style={{
+          marginBottom: 5,
+        }}
+      >
+        {route.Desc}
+      </Text>
       <View styles={styles.pathContainer}>
-        <View>
+        <View style={{
+          marginBottom: 5,
+
+        }}>
           <Image
             source={require("../../../assets/path.png")}
             style={styles.image}

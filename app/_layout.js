@@ -36,7 +36,7 @@ const Layout = () => {
       }} />
       <Stack.Screen name="find-route/route-detail" options={{
         // headerShown: false,
-        presentation: "modal"
+        // presentation: "modal"
       }} />
     </Stack>
   )

@@ -11,10 +11,11 @@ import { COLORS, SIZES, icons } from "../../../constants";
 import styles from "./Tracking.style";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Image } from "react-native";
-import { useFetch } from "../../../hook/useFetch";
+import { useRouter } from "expo-router";
 
-const Tracking = ({ points, path }) => {
+const Tracking = () => {
   const mapRef = React.useRef(null);
+  const router = useRouter();
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -53,8 +54,10 @@ const Tracking = ({ points, path }) => {
     location: `${region.latitude}, ${region.longitude}`,
   };
 
-  const handleClick = () => {
-  };
+  const handleClick = () =>
+    router.push(
+      `find-route/recommendation?query=${region1.latitude},${region1.longitude}/${region2.latitude},${region2.longitude}`
+    );
 
   useEffect(() => {
     (async () => {
@@ -199,7 +202,7 @@ const Tracking = ({ points, path }) => {
           }}
         ></Marker>
 
-        {points.map((point, index) => (
+        {/* {points.map((point, index) => (
           <Marker
             key={index}
             coordinate={{
@@ -217,7 +220,7 @@ const Tracking = ({ points, path }) => {
           coordinates={path}
           strokeWidth={8}
           strokeColor={COLORS.tertiary}
-        />
+        /> */}
       </MapView>
     </View>
   );

@@ -4,7 +4,7 @@ import { COLORS, FONT, SHADOWS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
-    width: 250,
+    // width: 250,
     maxHeight: 200,
     padding: SIZES.xLarge,
     backgroundColor: COLORS.gray2,
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.medium,
     ...SHADOWS.medium,
     shadowColor: COLORS.white,
+    marginTop: 10
   },
   infoContainer: {
     alignItems: "center",
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
   pathContainer: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
   ticketContainer: {
     flexDirection: "row",
