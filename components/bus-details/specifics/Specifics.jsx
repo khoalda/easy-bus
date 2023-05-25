@@ -1,8 +1,7 @@
 import { View, Text, ActivityIndicator, FlatList } from "react-native";
 import styles from "./Specifics.style";
 import { COLORS, SIZES } from "../../../constants";
-import Tracking from "../../find-route/tracking/Tracking";
-import { path as mockPath } from "../../../constants/mockData";
+import BusMap from "../../find-route/bus-map/BusMap";
 
 const Specifics = ({ title, stops, pointsLoading, path, pathLoading }) => {
   return (
@@ -26,7 +25,7 @@ const Specifics = ({ title, stops, pointsLoading, path, pathLoading }) => {
           showsVerticalScrollIndicator={false}
         />
       ) : (
-        <Tracking
+        <BusMap
           points={stops}
           path={path.lat.map((lat, index) => ({
             latitude: lat,

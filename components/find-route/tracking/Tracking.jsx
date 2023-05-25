@@ -141,7 +141,7 @@ const Tracking = ({ points, path }) => {
                 }}
             />
 
-            {/* <MapView
+            <MapView
                 ref={mapRef}
                 style={styles.mapContainer}
                 provider={PROVIDER_GOOGLE}
@@ -173,7 +173,7 @@ const Tracking = ({ points, path }) => {
                     strokeWidth={8}
                     strokeColor={COLORS.tertiary}
                 />
-            </MapView> */}
+            </MapView>
         </View>
     );
 };
