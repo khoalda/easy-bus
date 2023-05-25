@@ -1,6 +1,8 @@
 import { View, Text, ActivityIndicator } from "react-native";
 import styles from "./Specifics.style";
-import { COLORS } from "../../../constants";
+import { COLORS, SIZES } from "../../../constants";
+import Tracking from "../../find-route/tracking/Tracking";
+import Map from "../../find-route/map/Map";
 
 const Specifics = ({ title, data, isLoading }) => {
   return (
@@ -23,7 +25,14 @@ const Specifics = ({ title, data, isLoading }) => {
               ))}
             </View>
           ) : (
-            <></>
+            <View
+              style={{
+                flex: 1,
+                padding: SIZES.medium,
+              }}
+            >
+              <Tracking />
+            </View>
           )}
         </>
       )}

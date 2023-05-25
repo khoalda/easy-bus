@@ -20,6 +20,7 @@ import {
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
 import axios from "axios";
+import Tracking from "../../components/find-route/tracking/Tracking";
 
 const tabs = ["Thông tin chung", "Các trạm đi qua", "Bản đồ"];
 
