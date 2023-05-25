@@ -16,7 +16,7 @@ const FindRoute = () => {
           padding: SIZES.medium,
         }}
       >
-        <SearchBox />
+        {/* <SearchBox /> */}
         {/* <Map /> */}
         <Tracking points={points} path={path} />
       </View>

@@ -21,7 +21,7 @@ import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
 import axios from "axios";
 
-const tabs = ["Thông tin chung", "Các trạm đi qua", "Bản đồ"];
+const tabs = ["Thông tin chung", "Bản đồ", "Các trạm đi qua"];
 
 const BusDetails = () => {
   const params = useSearchParams();
