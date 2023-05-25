@@ -6,7 +6,7 @@ import BusMap from "../../find-route/bus-map/BusMap";
 const Specifics = ({ title, stops, pointsLoading, path, pathLoading }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}:</Text>
+      <Text style={styles.title}>{title}</Text>
 
       {pointsLoading ? (
         <ActivityIndicator size="large" color={COLORS.primary} />

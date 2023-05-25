@@ -6,7 +6,7 @@ import { calculateAverage, getOrderedTime } from "../../../utils";
 const About = ({ info }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.headText}>Thông tin chung:</Text>
+      <Text style={styles.headText}>Thông tin chung</Text>
 
       <View style={styles.pointsContainer}>
         <View style={styles.pointWrapper}>
