@@ -8,33 +8,22 @@ const Specifics = ({ title, data, isLoading }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}:</Text>
-
+      
       {isLoading ? (
         <ActivityIndicator size="large" color={COLORS.primary} />
       ) : !data || data.length === 0 ? (
         <Text>Không có dữ liệu</Text>
+      ) : title === "Các trạm đi qua" ? (
+        <View style={styles.pointsContainer}>
+          {data?.map((item, index) => (
+            <View style={styles.pointWrapper} key={index}>
+              <View style={styles.pointDot} />
+              <Text style={styles.pointText}>{item.Name}</Text>
+            </View>
+          ))}
+        </View>
       ) : (
-        <>
-          {title === "Các trạm đi qua" ? (
-            <View style={styles.pointsContainer}>
-              {data?.map((item, index) => (
-                <View style={styles.pointWrapper} key={index}>
-                  <View style={styles.pointDot} />
-                  <Text style={styles.pointText}>{item.Name}</Text>
-                </View>
-              ))}
-            </View>
-          ) : (
-            <View
-              style={{
-                flex: 1,
-                padding: SIZES.medium,
-              }}
-            >
-              <Tracking />
-            </View>
-          )}
-        </>
+        <Tracking />
       )}
     </View>
   );

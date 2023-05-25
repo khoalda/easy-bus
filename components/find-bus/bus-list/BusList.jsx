@@ -68,6 +68,7 @@ const BusList = () => {
                   handleNavigate={() => router.push(`find-bus/${item.id}`)}
                 />
               )}
+              showsVerticalScrollIndicator={false}
               keyExtractor={(item) => item.id}
               contentContainerStyle={{
                 columnGap: SIZES.medium,

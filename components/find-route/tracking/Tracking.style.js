@@ -4,7 +4,7 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
   mapContainer: {
-    marginTop: SIZES.large,
+    marginTop: SIZES.small,
     flex: 1
   },
 });

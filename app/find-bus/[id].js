@@ -113,36 +113,35 @@ const BusDetails = () => {
         }}
       />
 
-      <>
-        <ScrollView showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        >
-          {busInfoLoading ? (
-            <ActivityIndicator size='large' color={COLORS.primary} />
-          ) : busInfoError ? (
-            <Text>Đã có lỗi xảy ra</Text>
-          ) : busInfo.length === 0 ? (
-            <Text>Không có dữ liệu</Text>
-          ) : (
-            <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
-              <Logo
-                no={busInfo[0].RouteNo}
-              />
 
-              <JobTabs
-                tabs={tabs}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-              />
+      <ScrollView showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        contentContainerStyle={{ flex: 1 }}
+      >
+        {busInfoLoading ? (
+          <ActivityIndicator size='large' color={COLORS.primary} />
+        ) : busInfoError ? (
+          <Text>Đã có lỗi xảy ra</Text>
+        ) : busInfo.length === 0 ? (
+          <Text>Không có dữ liệu</Text>
+        ) : (
+          <View style={{ padding: SIZES.medium, paddingBottom: 100, flex: 1 }}>
+            <Logo
+              no={busInfo[0].RouteNo}
+            />
 
-              {displayTabContent()}
-            </View>
-          )}
-        </ScrollView>
+            <JobTabs
+              tabs={tabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
 
-        {/* <JobFooter url={busInfo[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} /> */}
-      </>
+            {displayTabContent()}
+          </View>
+        )}
+      </ScrollView>
+
     </SafeAreaView>
   );
 };
