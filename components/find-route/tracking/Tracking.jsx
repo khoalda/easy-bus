@@ -9,9 +9,8 @@ import { StyleSheet, View, Text, Platform } from "react-native";
 import * as Location from "expo-location";
 import { COLORS } from "../../../constants";
 import styles from "./Tracking.style";
-import { path, points } from "../../../constants/mockData";
 
-const Tracking = () => {
+const Tracking = ({ points, path }) => {
   const mapRef = React.useRef(null);
 
   const [location, setLocation] = useState(null);
@@ -78,7 +77,7 @@ const Tracking = () => {
               latitude: point.Lat,
               longitude: point.Lng,
             }}
-            pinColor="green"
+            pinColor={COLORS.primary}
             title={"Trạm"}
             description={point.Name}
             opacity={0.8}
@@ -91,7 +90,7 @@ const Tracking = () => {
             longitude: point.Longitude,
           }))}
           strokeWidth={8}
-          strokeColor="rgba(255, 119, 84, 0.9)"
+          strokeColor={COLORS.tertiary}
         />
       </MapView>
     </View>

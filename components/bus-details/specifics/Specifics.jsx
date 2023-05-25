@@ -5,10 +5,17 @@ import Tracking from "../../find-route/tracking/Tracking";
 import Map from "../../find-route/map/Map";
 
 const Specifics = ({ title, data, isLoading }) => {
+  const path = data.map((item) => {
+    return {
+      Longitude: item.Lng,
+      Latitude: item.Lat,
+    };
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}:</Text>
-      
+
       {isLoading ? (
         <ActivityIndicator size="large" color={COLORS.primary} />
       ) : !data || data.length === 0 ? (
@@ -23,7 +30,7 @@ const Specifics = ({ title, data, isLoading }) => {
           ))}
         </View>
       ) : (
-        <Tracking />
+        <Tracking points={data} path={path}/>
       )}
     </View>
   );
