@@ -9,6 +9,7 @@ import { StyleSheet, View, Text, Platform } from "react-native";
 import * as Location from "expo-location";
 import { COLORS } from "../../../constants";
 import styles from "./Tracking.style";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete"
 
 const Tracking = ({ points, path }) => {
   const mapRef = React.useRef(null);
@@ -57,6 +58,36 @@ const Tracking = ({ points, path }) => {
 
   return (
     <View style={styles.mapContainer}>
+      <GooglePlacesAutocomplete
+				placeholder="Search"
+				fetchDetails={true}
+				GooglePlacesSearchQuery={{
+					rankby: "distance"
+				}}
+				onPress={(data, details = null) => {
+					// 'details' is provided when fetchDetails = true
+					console.log(data, details)
+					setRegion({
+						latitude: details.geometry.location.lat,
+						longitude: details.geometry.location.lng,
+						latitudeDelta: 0.0922,
+						longitudeDelta: 0.0421
+					})
+				}}
+				query={{
+					key: "KEY",
+					language: "en",
+					components: "country:us",
+					types: "establishment",
+					radius: 30000,
+					location: `${region.latitude}, ${region.longitude}`
+				}}
+				styles={{
+					container: { flex: 0, position: "absolute", width: "100%", zIndex: 1 },
+					listView: { backgroundColor: "white" }
+				}}
+			/>
+
       <MapView
         ref={mapRef}
         style={styles.mapContainer}
