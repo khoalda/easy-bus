@@ -68,18 +68,7 @@ const BusDetails = () => {
     }
   }, [busInfo])
 
-  useEffect(() => {
-    console.log(stops)
-  }, [stops])
-
   const [activeTab, setActiveTab] = useState(tabs[0]);
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    refetchBusInfo()
-    setRefreshing(false)
-  }, []);
 
   const displayTabContent = () => {
     switch (activeTab) {
@@ -119,35 +108,27 @@ const BusDetails = () => {
         }}
       />
 
+      {busInfoLoading ? (
+        <ActivityIndicator size='large' color={COLORS.primary} />
+      ) : busInfoError ? (
+        <Text>Đã có lỗi xảy ra</Text>
+      ) : busInfo.length === 0 ? (
+        <Text>Không có dữ liệu</Text>
+      ) : (
+        <View style={{ padding: SIZES.medium, paddingBottom: 100, flex: 1 }}>
+          <Logo
+            no={busInfo[0].RouteNo}
+          />
 
-      <ScrollView showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        contentContainerStyle={{ flex: 1 }}
-      >
-        {busInfoLoading ? (
-          <ActivityIndicator size='large' color={COLORS.primary} />
-        ) : busInfoError ? (
-          <Text>Đã có lỗi xảy ra</Text>
-        ) : busInfo.length === 0 ? (
-          <Text>Không có dữ liệu</Text>
-        ) : (
-          <View style={{ padding: SIZES.medium, paddingBottom: 100, flex: 1 }}>
-            <Logo
-              no={busInfo[0].RouteNo}
-            />
+          <JobTabs
+            tabs={tabs}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
 
-            <JobTabs
-              tabs={tabs}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
-
-            {displayTabContent()}
-          </View>
-        )}
-      </ScrollView>
-
+          {displayTabContent()}
+        </View>
+      )}
     </SafeAreaView>
   );
 };
