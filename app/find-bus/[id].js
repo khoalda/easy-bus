@@ -20,15 +20,16 @@ import {
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
 import axios from "axios";
-import Tracking from "../../components/find-route/tracking/Tracking";
 
 const tabs = ["Thông tin chung", "Các trạm đi qua", "Bản đồ"];
 
 const BusDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
-  const [stops, setStops] = useState([]);
+  const [stops, setStops] = useState({ lat: [], lng: [] });
+  const [path, setPath] = useState([]);
   const [stopsLoading, setStopsLoading] = useState(true);
+  const [pathLoading, setPathLoading] = useState(true);
 
   const { data: busInfo, isLoading: busInfoLoading, error: busInfoError, refetch: refetchBusInfo } = useFetch(`vars/${params.id}`);
 
@@ -46,9 +47,24 @@ const BusDetails = () => {
       }
     };
 
+    const fetchPath = async (url) => {
+      setPathLoading(true);
+      try {
+        const response = await axios.get(url);
+        setPath(response.data);
+        setPathLoading(false);
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setPathLoading(false);
+      }
+    };
+
     if (busInfo && busInfo.length > 0 && busInfo[0]) {
-      const url = `https://easy-bus-backend-production.up.railway.app/stops/${params.id}/${busInfo[0].RouteVarId}`
-      fetchStops(url)
+      const stopsUrl = `https://easy-bus-backend-production.up.railway.app/stops/${params.id}/${busInfo[0].RouteVarId}`
+      const pathUrl = `https://easy-bus-backend-production.up.railway.app/paths/${params.id}/${busInfo[0].RouteVarId}`
+      fetchStops(stopsUrl)
+      fetchPath(pathUrl)
     }
   }, [busInfo])
 
@@ -72,26 +88,16 @@ const BusDetails = () => {
           <General info={busInfo ?? "Không có dữ liệu"} />
         );
 
-      case "Các trạm đi qua":
-        return (
-          <Specifics
-            title='Các trạm đi qua'
-            data={stops}
-            isLoading={stopsLoading}
-          />
-        );
-
-      case "Bản đồ":
-        return (
-          <Specifics
-            title='Bản đồ'
-            data={stops}
-            isLoading={stopsLoading}
-          />
-        );
-
       default:
-        return null;
+        return (
+          <Specifics
+            title={activeTab}
+            stops={stops}
+            stopsLoading={stopsLoading}
+            path={path}
+            pathLoading={pathLoading}
+          />
+        );
     }
   };
 

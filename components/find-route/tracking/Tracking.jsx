@@ -85,10 +85,7 @@ const Tracking = ({ points, path }) => {
         ))}
 
         <Polyline
-          coordinates={path.map((point) => ({
-            latitude: point.Latitude,
-            longitude: point.Longitude,
-          }))}
+          coordinates={path}
           strokeWidth={8}
           strokeColor={COLORS.tertiary}
         />

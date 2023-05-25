@@ -2,27 +2,21 @@ import { View, Text, ActivityIndicator } from "react-native";
 import styles from "./Specifics.style";
 import { COLORS, SIZES } from "../../../constants";
 import Tracking from "../../find-route/tracking/Tracking";
-import Map from "../../find-route/map/Map";
+import { path as mockPath } from "../../../constants/mockData";
 
-const Specifics = ({ title, data, isLoading }) => {
-  const path = data.map((item) => {
-    return {
-      Longitude: item.Lng,
-      Latitude: item.Lat,
-    };
-  });
-
+const Specifics = ({ title, stops, pointsLoading, path, pathLoading }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}:</Text>
 
-      {isLoading ? (
+      {pointsLoading ? (
         <ActivityIndicator size="large" color={COLORS.primary} />
-      ) : !data || data.length === 0 ? (
+      ) : !stops || stops.length === 0 ? (
         <Text>Không có dữ liệu</Text>
       ) : title === "Các trạm đi qua" ? (
+        // TODO: bug chỗ này k scroll được
         <View style={styles.pointsContainer}>
-          {data?.map((item, index) => (
+          {stops?.map((item, index) => (
             <View style={styles.pointWrapper} key={index}>
               <View style={styles.pointDot} />
               <Text style={styles.pointText}>{item.Name}</Text>
@@ -30,7 +24,13 @@ const Specifics = ({ title, data, isLoading }) => {
           ))}
         </View>
       ) : (
-        <Tracking points={data} path={path}/>
+        <Tracking
+          points={stops}
+          path={path.lat.map((lat, index) => ({
+            latitude: lat,
+            longitude: path.lng[index],
+          }))}
+        />
       )}
     </View>
   );
