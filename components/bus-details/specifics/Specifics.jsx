@@ -1,28 +1,31 @@
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import styles from "./Specifics.style";
-import useFetch from "../../../hook/useFetch";
+import { COLORS } from "../../../constants";
 
-const Specifics = ({ title, varId, routeVarId }) => {
-  const { data, isLoading, error, refetch } = useFetch(
-    `stops/${varId}/${routeVarId}`
-  );
-
+const Specifics = ({ title, data, isLoading }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}:</Text>
 
-      {/* TODO: add loadings */}
-      {title === "Các trạm đi qua" ? (
-        <View style={styles.pointsContainer}>
-          {data?.map((item, index) => (
-            <View style={styles.pointWrapper} key={index}>
-              <View style={styles.pointDot} />
-              <Text style={styles.pointText}>{item.Name}</Text>
-            </View>
-          ))}
-        </View>
+      {isLoading ? (
+        <ActivityIndicator size="large" color={COLORS.primary} />
+      ) : !data || data.length === 0 ? (
+        <Text>Không có dữ liệu</Text>
       ) : (
-        <></>
+        <>
+          {title === "Các trạm đi qua" ? (
+            <View style={styles.pointsContainer}>
+              {data?.map((item, index) => (
+                <View style={styles.pointWrapper} key={index}>
+                  <View style={styles.pointDot} />
+                  <Text style={styles.pointText}>{item.Name}</Text>
+                </View>
+              ))}
+            </View>
+          ) : (
+            <></>
+          )}
+        </>
       )}
     </View>
   );

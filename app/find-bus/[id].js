@@ -11,7 +11,7 @@ import {
 
 import {
   Logo,
-  JobAbout,
+  General,
   JobFooter,
   JobTabs,
   ScreenHeaderBtn,
@@ -19,42 +19,64 @@ import {
 } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
+import axios from "axios";
 
 const tabs = ["Thông tin chung", "Các trạm đi qua", "Bản đồ"];
 
-const JobDetails = () => {
+const BusDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
+  const [stops, setStops] = useState([]);
+  const [stopsLoading, setStopsLoading] = useState(true);
 
-  const { data, isLoading, error, refetch } = useFetch(`vars/${params.id}`);
+  const { data: busInfo, isLoading: busInfoLoading, error: busInfoError, refetch: refetchBusInfo } = useFetch(`vars/${params.id}`);
+
+  useEffect(() => {
+    const fetchStops = async (url) => {
+      setStopsLoading(true);
+      try {
+        const response = await axios.get(url);
+        setStops(response.data);
+        setStopsLoading(false);
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setStopsLoading(false);
+      }
+    };
+
+    if (busInfo && busInfo.length > 0 && busInfo[0]) {
+      const url = `https://easy-bus-backend-production.up.railway.app/stops/${params.id}/${busInfo[0].RouteVarId}`
+      fetchStops(url)
+    }
+  }, [busInfo])
+
+  useEffect(() => {
+    console.log(stops)
+  }, [stops])
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    refetch()
+    refetchBusInfo()
     setRefreshing(false)
   }, []);
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
 
   const displayTabContent = () => {
     switch (activeTab) {
       case "Thông tin chung":
         return (
-          <JobAbout info={data ?? "No data provided"} />
+          <General info={busInfo ?? "Không có dữ liệu"} />
         );
 
       case "Các trạm đi qua":
         return (
           <Specifics
             title='Các trạm đi qua'
-            varId={params.id}
-            routeVarId={data[0].RouteVarId}
+            data={stops}
+            isLoading={stopsLoading}
           />
         );
 
@@ -62,8 +84,8 @@ const JobDetails = () => {
         return (
           <Specifics
             title='Bản đồ'
-            varId={params.id}
-            routeVarId={data[0].RouteVarId}
+            data={stops}
+            isLoading={stopsLoading}
           />
         );
 
@@ -86,9 +108,6 @@ const JobDetails = () => {
               handlePress={() => router.back()}
             />
           ),
-          headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
-          ),
           headerTitle: "",
         }}
       />
@@ -98,16 +117,16 @@ const JobDetails = () => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
-          {isLoading ? (
+          {busInfoLoading ? (
             <ActivityIndicator size='large' color={COLORS.primary} />
-          ) : error ? (
+          ) : busInfoError ? (
             <Text>Đã có lỗi xảy ra</Text>
-          ) : data.length === 0 ? (
+          ) : busInfo.length === 0 ? (
             <Text>Không có dữ liệu</Text>
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Logo
-                no={data[0].RouteNo}
+                no={busInfo[0].RouteNo}
               />
 
               <JobTabs
@@ -121,10 +140,10 @@ const JobDetails = () => {
           )}
         </ScrollView>
 
-        {/* <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} /> */}
+        {/* <JobFooter url={busInfo[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} /> */}
       </>
     </SafeAreaView>
   );
 };
 
-export default JobDetails;
+export default BusDetails;

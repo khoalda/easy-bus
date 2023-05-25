@@ -12,7 +12,7 @@ const About = ({ info }) => {
         <View style={styles.pointWrapper}>
           <View style={styles.pointDot} />
           <Text style={styles.pointText}>
-            Tên tuyến: {info[0].EndStop + " - " + info[1].EndStop}
+            Tên tuyến: {info[1].EndStop + " - " + info[0].EndStop}
           </Text>
         </View>
 

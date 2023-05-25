@@ -8,7 +8,7 @@ import RecentBuses from "./home/recent/RecentBuses";
 // job details screen
 import Logo from "./bus-details/logo/Logo";
 import { default as JobTabs } from "./bus-details/tabs/Tabs";
-import { default as JobAbout } from "./bus-details/about/About";
+import { default as General } from "./bus-details/about/About";
 import { default as JobFooter } from "./bus-details/footer/Footer";
 import Specifics from "./bus-details/specifics/Specifics";
 
@@ -19,7 +19,7 @@ export {
   RecentBuses,
   Logo,
   JobTabs,
-  JobAbout,
+  General,
   JobFooter,
   Specifics,
 };
