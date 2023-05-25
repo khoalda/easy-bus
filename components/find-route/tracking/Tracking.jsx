@@ -29,6 +29,20 @@ const Tracking = ({ points, path }) => {
         longitudeDelta: 0.0421,
     });
 
+    const [region1, setRegion1] = useState({
+        latitude: 10.762622,
+        longitude: 106.660172,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    });
+
+    const [region2, setRegion2] = useState({
+        latitude: 10.762622,
+        longitude: 106.660172,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    });
+
     useEffect(() => {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -67,7 +81,7 @@ const Tracking = ({ points, path }) => {
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
                     console.log(data, details)
-                    setRegion({
+                    setRegion1({
                         latitude: details.geometry.location.lat,
                         longitude: details.geometry.location.lng,
                         latitudeDelta: 0.0922,
@@ -92,7 +106,42 @@ const Tracking = ({ points, path }) => {
                 }}
             />
 
-            <MapView
+            <GooglePlacesAutocomplete
+                placeholder="Search"
+                fetchDetails={true}
+                GooglePlacesSearchQuery={{
+                    rankby: "distance"
+                }}
+                onPress={(data, details = null) => {
+                    // 'details' is provided when fetchDetails = true
+                    console.log(data, details)
+                    setRegion2({
+                        latitude: details.geometry.location.lat,
+                        longitude: details.geometry.location.lng,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421
+                    })
+                }}
+                query={{
+                    key: "AIzaSyA8ROCsmNXGSZBUce4DDh2QVFDmMVhmi4g",
+                    language: "vi",
+                    types: "establishment",
+                    radius: 30000,
+                    location: `${region.latitude}, ${region.longitude}`
+                }}
+                styles={{
+                    container: {
+                        flex: 0,
+                        position: "absolute",
+                        width: "100%",
+                        zIndex: 1,
+                        top: 50,
+                    },
+                    listView: { backgroundColor: "white" }
+                }}
+            />
+
+            {/* <MapView
                 ref={mapRef}
                 style={styles.mapContainer}
                 provider={PROVIDER_GOOGLE}
@@ -124,7 +173,7 @@ const Tracking = ({ points, path }) => {
                     strokeWidth={8}
                     strokeColor={COLORS.tertiary}
                 />
-            </MapView>
+            </MapView> */}
         </View>
     );
 };
