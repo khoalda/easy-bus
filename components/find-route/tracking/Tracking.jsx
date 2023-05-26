@@ -12,34 +12,27 @@ import styles from "./Tracking.style";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Image } from "react-native";
 import { useRouter } from "expo-router";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const Tracking = () => {
   const mapRef = React.useRef(null);
   const router = useRouter();
 
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  const [pin, setPin] = React.useState({
-    latitude: 10.762622,
-    longitude: 106.660172,
-  });
-
-  const [region, setRegion] = useState({
+  const [currentLocation, setCurrentLocation] = useState({
     latitude: 10.762622,
     longitude: 106.660172,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
 
-  const [region1, setRegion1] = useState({
+  const [start, setStart] = useState({
     latitude: 10.762622,
     longitude: 106.660172,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
 
-  const [region2, setRegion2] = useState({
+  const [end, setEnd] = useState({
     latitude: 10.762622,
     longitude: 106.660172,
     latitudeDelta: 0.0922,
@@ -51,13 +44,19 @@ const Tracking = () => {
     language: "vi",
     types: "establishment",
     radius: 30000,
-    location: `${region.latitude}, ${region.longitude}`,
+    location: `${currentLocation.latitude}, ${currentLocation.longitude}`,
   };
 
   const handleClick = () =>
     router.push(
-      `find-route/recommendation?query=${region1.latitude},${region1.longitude}/${region2.latitude},${region2.longitude}`
+      `find-route/recommendation?query=${start.latitude},${start.longitude}/${end.latitude},${end.longitude}`
     );
+
+  const handleFocusCurrentLocation = () => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(currentLocation, 100);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -66,32 +65,20 @@ const Tracking = () => {
         setErrorMsg("Permission to access location was denied");
         return;
       }
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      setRegion({
+      const location = await Location.getCurrentPositionAsync({});
+      console.log("current location: ", location);
+      setCurrentLocation({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       });
-      setPin({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-      });
 
       if (mapRef.current) {
-        mapRef.current.animateToRegion(region, 100); // 100 là thời gian (ms) để di chuyển đến vùng
+        mapRef.current.animateToRegion(currentLocation, 100);
       }
     })();
   }, []);
-
-  useEffect(() => {
-    console.log("start: ", region1);
-  }, [region1]);
-
-  useEffect(() => {
-    console.log("end: ", region2);
-  }, [region2]);
 
   return (
     <View style={styles.mapContainer}>
@@ -117,7 +104,7 @@ const Tracking = () => {
               rankby: "distance",
             }}
             onPress={(data, details = null) => {
-              setRegion1({
+              setStart({
                 latitude: details.geometry.location.lat,
                 longitude: details.geometry.location.lng,
                 latitudeDelta: 0.0922,
@@ -146,7 +133,7 @@ const Tracking = () => {
               rankby: "distance",
             }}
             onPress={(data, details = null) => {
-              setRegion2({
+              setEnd({
                 latitude: details.geometry.location.lat,
                 longitude: details.geometry.location.lng,
                 latitudeDelta: 0.0922,
@@ -193,35 +180,30 @@ const Tracking = () => {
           zIndex: -1,
         }}
         provider={PROVIDER_GOOGLE}
-        initialRegion={region}
+        initialRegion={currentLocation}
       >
         <Marker
           coordinate={{
-            latitude: region.latitude,
-            longitude: region.longitude,
+            latitude: currentLocation.latitude,
+            longitude: currentLocation.longitude,
           }}
         ></Marker>
-
-        {/* {points.map((point, index) => (
-          <Marker
-            key={index}
-            coordinate={{
-              latitude: point.Lat,
-              longitude: point.Lng,
-            }}
-            pinColor={COLORS.primary}
-            title={"Trạm"}
-            description={point.Name}
-            opacity={0.8}
-          />
-        ))}
-
-        <Polyline
-          coordinates={path}
-          strokeWidth={8}
-          strokeColor={COLORS.tertiary}
-        /> */}
       </MapView>
+
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          bottom: 16,
+          right: 16,
+          backgroundColor: COLORS.white,
+          borderRadius: 20,
+          padding: 10,
+          elevation: 5,
+        }}
+        onPress={handleFocusCurrentLocation}
+      >
+        <MaterialIcons name="my-location" size={24} color={COLORS.primary} />
+      </TouchableOpacity>
     </View>
   );
 };
