@@ -16,14 +16,9 @@ import { busList } from "../../../constants/mockData";
 
 const RecentBuses = () => {
   const router = useRouter();
-  // const { data, isLoading, error } = useFetch("search", {
-  //   query: "React developer",
-  //   num_pages: "1",
-  // });
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, serError] = useState(false);
-  const [selectedBus, setSelectedBus] = useState("1_1");
+  const [selectedBus, setSelectedBus] = useState("26_1");
 
   const handleCardPress = (item) => {
     router.push(`find-bus/${item.id}`);
@@ -34,11 +29,6 @@ const RecentBuses = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Các tuyến đi gần đây</Text>
-        {/* <TouchableOpacity onPress={() => {
-          router.push(`/find-bus`);
-        }}>
-          <Text style={styles.headerBtn}>Xem tất cả</Text>
-        </TouchableOpacity> */}
       </View>
 
       <View style={styles.cardsContainer}>

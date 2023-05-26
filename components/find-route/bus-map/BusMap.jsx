@@ -1,10 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import MapView, {
-  Marker,
-  Circle,
-  PROVIDER_GOOGLE,
-  Polyline,
-} from "react-native-maps";
+import React, { useState, useEffect } from "react";
+import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from "react-native-maps";
 import { View, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
 import { COLORS } from "../../../constants";
@@ -26,6 +21,20 @@ const BusMap = ({ points, path }) => {
     }
   };
 
+  const handleFocusToLocation = (point) => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: point.Lat,
+          longitude: point.Lng,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        },
+        100
+      );
+    }
+  };
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -40,11 +49,6 @@ const BusMap = ({ points, path }) => {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       });
-      if (mapRef.current) {
-        mapRef.current.animateToRegion(region, 100); // 100 là thời gian (ms) để di chuyển đến vùng
-      }
-      console.log(location);
-      console.log(region);
     })();
   }, []);
 
