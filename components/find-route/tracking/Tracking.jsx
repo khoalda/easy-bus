@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-} from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { View, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
 import { COLORS, SIZES, icons } from "../../../constants";
@@ -10,7 +7,7 @@ import styles from "./Tracking.style";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Image } from "react-native";
 import { useRouter } from "expo-router";
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Tracking = () => {
   const mapRef = React.useRef(null);
@@ -64,18 +61,19 @@ const Tracking = () => {
         return;
       }
       const location = await Location.getCurrentPositionAsync({});
-      console.log("current location: ", location);
       setCurrentLocation({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       });
-
-      if (mapRef.current) {
-        mapRef.current.animateToRegion(currentLocation, 100);
-      }
     })();
+  }, []);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(currentLocation, 100);
+    }
   }, [currentLocation]);
 
   return (
