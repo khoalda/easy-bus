@@ -23,7 +23,7 @@ const RecentBuses = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, serError] = useState(false);
-  const [selectedBus, setSelectedBus] = useState('1_1');
+  const [selectedBus, setSelectedBus] = useState("1_1");
 
   const handleCardPress = (item) => {
     router.push(`find-bus/${item.id}`);
@@ -43,7 +43,7 @@ const RecentBuses = () => {
 
       <View style={styles.cardsContainer}>
         {isLoading ? (
-          <ActivityIndicator size='large' color={COLORS.primary} />
+          <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
           <Text>Đã có lỗi xảy ra</Text>
         ) : (
@@ -58,6 +58,7 @@ const RecentBuses = () => {
             )}
             keyExtractor={(item) => item.id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
+            showsHorizontalScrollIndicator={false}
             horizontal
           />
         )}
