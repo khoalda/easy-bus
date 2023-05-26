@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import MapView, {
   Marker,
-  Circle,
   PROVIDER_GOOGLE,
-  Polyline,
 } from "react-native-maps";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
 import { COLORS, SIZES, icons } from "../../../constants";
 import styles from "./Tracking.style";
@@ -78,7 +76,7 @@ const Tracking = () => {
         mapRef.current.animateToRegion(currentLocation, 100);
       }
     })();
-  }, []);
+  }, [currentLocation]);
 
   return (
     <View style={styles.mapContainer}>

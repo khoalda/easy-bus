@@ -5,28 +5,26 @@ import MapView, {
   PROVIDER_GOOGLE,
   Polyline,
 } from "react-native-maps";
-import { StyleSheet, View, Text, Platform } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
 import { COLORS } from "../../../constants";
 import styles from "./BusMap.style";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const BusMap = ({ points, path }) => {
   const mapRef = React.useRef(null);
-
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  const [pin, setPin] = React.useState({
-    latitude: 10.762622,
-    longitude: 106.660172,
-  });
-
   const [region, setRegion] = useState({
     latitude: 10.762622,
     longitude: 106.660172,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+
+  const handleFocusCurrentLocation = () => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(region, 100);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -36,16 +34,11 @@ const BusMap = ({ points, path }) => {
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
       setRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
-      });
-      setPin({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
       });
       if (mapRef.current) {
         mapRef.current.animateToRegion(region, 100); // 100 là thời gian (ms) để di chuyển đến vùng
@@ -90,6 +83,21 @@ const BusMap = ({ points, path }) => {
           strokeColor={COLORS.tertiary}
         />
       </MapView>
+
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          bottom: 16,
+          right: 16,
+          backgroundColor: COLORS.white,
+          borderRadius: 20,
+          padding: 10,
+          elevation: 5,
+        }}
+        onPress={handleFocusCurrentLocation}
+      >
+        <MaterialIcons name="my-location" size={24} color={COLORS.primary} />
+      </TouchableOpacity>
     </View>
   );
 };
