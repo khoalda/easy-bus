@@ -27,6 +27,7 @@ const Specifics = ({ title, stops, pointsLoading, path, pathLoading }) => {
       ) : (
         <BusMap
           points={stops}
+          type="single"
           path={path.lat.map((lat, index) => ({
             latitude: lat,
             longitude: path.lng[index],

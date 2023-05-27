@@ -6,7 +6,12 @@ import { COLORS } from "../../../constants";
 import styles from "./BusMap.style";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const BusMap = ({ points, path }) => {
+const pickColor = (number) => {
+  if (number % 2 == 1) return COLORS.tertiary;
+  else return COLORS.secondary;
+};
+
+const BusMap = ({ points, type, path }) => {
   const mapRef = React.useRef(null);
   const [region, setRegion] = useState({
     latitude: 10.762622,
@@ -81,11 +86,27 @@ const BusMap = ({ points, path }) => {
           />
         ))}
 
-        <Polyline
-          coordinates={path}
-          strokeWidth={8}
-          strokeColor={COLORS.tertiary}
-        />
+        {path && type === "single" ? (
+          <Polyline
+            coordinates={path}
+            strokeWidth={8}
+            strokeColor={COLORS.tertiary}
+          />
+        ) : (
+          Object.keys(path).map((key, index) => {
+            return (
+              <Polyline
+                key={key}
+                coordinates={path[key].map((item) => ({
+                  latitude: item.Latitude,
+                  longitude: item.Longitude,
+                }))}
+                strokeWidth={8}
+                strokeColor={pickColor(index)}
+              />
+            );
+          })
+        )}
       </MapView>
 
       <TouchableOpacity

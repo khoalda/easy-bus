@@ -68,12 +68,8 @@ const RouteDetail = () => {
 
           <BusMap
             points={data.stops}
-            path={data.coordRoute[`${Object.keys(data.coordRoute)[0]}`].map(
-              (item) => ({
-                latitude: item.Latitude,
-                longitude: item.Longitude,
-              })
-            )}
+            type="multiple"
+            path={data.coordRoute}
           />
 
           <FlatList
