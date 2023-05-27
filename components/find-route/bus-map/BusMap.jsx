@@ -7,7 +7,7 @@ import styles from "./BusMap.style";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const pickColor = (number) => {
-  if (number % 2 == 1) return COLORS.tertiary;
+  if (number % 2 == 0) return COLORS.tertiary;
   else return COLORS.secondary;
 };
 
