@@ -71,8 +71,8 @@ const Tracking = ({ initialEnd }) => {
       }
       const location = await Location.getCurrentPositionAsync({});
       setCurrentLocation({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
+        latitude: parseFloat(location.coords.latitude),
+        longitude: parseFloat(location.coords.longitude),
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       });
@@ -86,7 +86,7 @@ const Tracking = ({ initialEnd }) => {
       {
         description: "[Vị trí hiện tại]",
         geometry: {
-          location: { lat: currentLocation.latitude, lng: currentLocation.longitude },
+          location: { lat: parseFloat(currentLocation.latitude), lng: parseFloat(currentLocation.longitude) },
         },
       },
     ]);
@@ -107,7 +107,7 @@ const Tracking = ({ initialEnd }) => {
           justifyContent: "center",
           marginTop: SIZES.small,
           marginBottom: SIZES.small,
-          gap: "5px",
+          gap: 5,
         }}
       >
         <View
@@ -123,8 +123,8 @@ const Tracking = ({ initialEnd }) => {
             }}
             onPress={(data, details = null) => {
               setStart({
-                latitude: details.geometry.location.lat,
-                longitude: details.geometry.location.lng,
+                latitude: parseFloat(details.geometry.location.lat),
+                longitude: parseFloat(details.geometry.location.lng),
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               });
@@ -154,8 +154,8 @@ const Tracking = ({ initialEnd }) => {
             }}
             onPress={(data, details = null) => {
               setEnd({
-                latitude: details.geometry.location.lat,
-                longitude: details.geometry.location.lng,
+                latitude: parseFloat(details.geometry.location.lat),
+                longitude: parseFloat(details.geometry.location.lng),
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               });
@@ -207,8 +207,8 @@ const Tracking = ({ initialEnd }) => {
       >
         <Marker
           coordinate={{
-            latitude: currentLocation.latitude,
-            longitude: currentLocation.longitude,
+            latitude: parseFloat(currentLocation.latitude),
+            longitude: parseFloat(currentLocation.longitude),
           }}
         ></Marker>
       </MapView>

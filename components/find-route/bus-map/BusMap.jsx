@@ -67,8 +67,8 @@ const BusMap = ({ points, type, path }) => {
       >
         <Marker
           coordinate={{
-            latitude: region.latitude,
-            longitude: region.longitude,
+            latitude: parseFloat(region.latitude),
+            longitude: parseFloat(region.longitude),
           }}
         ></Marker>
 
@@ -76,8 +76,8 @@ const BusMap = ({ points, type, path }) => {
           <Marker
             key={index}
             coordinate={{
-              latitude: point.Lat,
-              longitude: point.Lng,
+              latitude: parseFloat(point.Lat),
+              longitude: parseFloat(point.Lng),
             }}
             pinColor={COLORS.primary}
             title={"Trạm"}
@@ -99,8 +99,8 @@ const BusMap = ({ points, type, path }) => {
                 <Polyline
                   key={key}
                   coordinates={path[key].map((item) => ({
-                    latitude: item.Latitude,
-                    longitude: item.Longitude,
+                    latitude: parseFloat(item.Latitude),
+                    longitude: parseFloat(item.Longitude),
                   }))}
                   strokeWidth={8}
                   strokeColor={pickColor(index)}
