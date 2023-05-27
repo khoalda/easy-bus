@@ -10,6 +10,24 @@
       "image": "./assets/Spash-screen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d4d810a7-9061-41a8-b100-847283df7045"
+      }
+    },
+    "android": {
+      "package": "com.baokhanhle123.easybus",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA8ROCsmNXGSZBUce4DDh2QVFDmMVhmi4g"
+        }
+      }
     }
   }
 }
