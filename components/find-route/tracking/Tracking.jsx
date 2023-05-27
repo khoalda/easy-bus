@@ -13,13 +13,7 @@ const Tracking = ({ initialEnd }) => {
   const mapRef = useRef(null);
   const router = useRouter();
   const endAutocompleteRef = useRef(null);
-
-  useEffect(() => {
-    if (initialEnd) {
-      endAutocompleteRef.current?.setAddressText(initialEnd);
-      endAutocompleteRef.current?.focus();
-    }
-  }, [initialEnd]);
+  const startAutocompleteRef = useRef(null);
 
   const [currentLocation, setCurrentLocation] = useState({
     latitude: 10.762622,
@@ -41,6 +35,23 @@ const Tracking = ({ initialEnd }) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+
+  useEffect(() => {
+    startAutocompleteRef.current?.setAddressText('[Vị trí hiện tại]');
+    setStart({
+      latitude: parseFloat(currentLocation.latitude),
+      longitude: parseFloat(currentLocation.longitude),
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    })
+  }, [currentLocation])
+
+  useEffect(() => {
+    if (initialEnd) {
+      endAutocompleteRef.current?.setAddressText(initialEnd);
+      endAutocompleteRef.current?.focus();
+    }
+  }, [initialEnd]);
 
   const query = {
     key: "AIzaSyA8ROCsmNXGSZBUce4DDh2QVFDmMVhmi4g",
@@ -130,6 +141,7 @@ const Tracking = ({ initialEnd }) => {
               });
             }}
             query={query}
+            ref={startAutocompleteRef}
             predefinedPlaces={predefinedStart}
             predefinedPlacesAlwaysVisible={true}
             styles={{
