@@ -53,8 +53,7 @@ const Tracking = ({ points, path }) => {
     location: `${region.latitude}, ${region.longitude}`,
   };
 
-  const handleClick = () => {
-  };
+  const handleClick = () => {};
 
   useEffect(() => {
     (async () => {
@@ -115,11 +114,12 @@ const Tracking = ({ points, path }) => {
             }}
             onPress={(data, details = null) => {
               setRegion1({
-                latitude: details.geometry.location.lat,
-                longitude: details.geometry.location.lng,
+                latitude: parseFloat(details.geometry.location.lat),
+                longitude: parseFloat(details.geometry.location.lng),
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               });
+              
             }}
             query={query}
             styles={{
@@ -144,8 +144,8 @@ const Tracking = ({ points, path }) => {
             }}
             onPress={(data, details = null) => {
               setRegion2({
-                latitude: details.geometry.location.lat,
-                longitude: details.geometry.location.lng,
+                latitude: parseFloat(details.geometry.location.lat),
+                longitude: parseFloat(details.geometry.location.lng),
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               });
@@ -194,8 +194,8 @@ const Tracking = ({ points, path }) => {
       >
         <Marker
           coordinate={{
-            latitude: region.latitude,
-            longitude: region.longitude,
+            latitude: parseFloat(region.latitude), // Parse the latitude value to a float
+            longitude: parseFloat(region.longitude), // Parse the longitude value to a float
           }}
         ></Marker>
 
@@ -203,8 +203,8 @@ const Tracking = ({ points, path }) => {
           <Marker
             key={index}
             coordinate={{
-              latitude: point.Lat,
-              longitude: point.Lng,
+              latitude: parseFloat(point.Lat), // Parse the latitude value to a float
+              longitude: parseFloat(point.Lng), // Parse the longitude value to a float
             }}
             pinColor={COLORS.primary}
             title={"Trạm"}
