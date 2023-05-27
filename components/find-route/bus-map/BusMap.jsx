@@ -67,7 +67,7 @@ const BusMap = ({ points, path }) => {
           }}
         ></Marker>
 
-        {points.map((point, index) => (
+        {points?.map((point, index) => (
           <Marker
             key={index}
             coordinate={{

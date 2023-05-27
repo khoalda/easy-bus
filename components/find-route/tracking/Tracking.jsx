@@ -42,11 +42,6 @@ const Tracking = ({ initialEnd }) => {
     longitudeDelta: 0.0421,
   });
 
-  const currentPlace = {
-    description: "[Vị trí hiện tại]",
-    geometry: { location: { lat: currentLocation.latitude, lng: currentLocation.longitude } },
-  };
-
   const query = {
     key: "AIzaSyA8ROCsmNXGSZBUce4DDh2QVFDmMVhmi4g",
     language: "vi",
@@ -83,6 +78,19 @@ const Tracking = ({ initialEnd }) => {
       });
     })();
   }, []);
+
+  const [predefinedStart, setPredefinedStart] = useState([]);
+
+  useEffect(() => {
+    setPredefinedStart([
+      {
+        description: "[Vị trí hiện tại]",
+        geometry: {
+          location: { lat: currentLocation.latitude, lng: currentLocation.longitude },
+        },
+      },
+    ]);
+  }, [currentLocation]);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -122,7 +130,7 @@ const Tracking = ({ initialEnd }) => {
               });
             }}
             query={query}
-            predefinedPlaces={[currentPlace]}
+            predefinedPlaces={predefinedStart}
             predefinedPlacesAlwaysVisible={true}
             styles={{
               textInput: {
@@ -154,7 +162,7 @@ const Tracking = ({ initialEnd }) => {
             }}
             query={query}
             ref={endAutocompleteRef}
-            predefinedPlaces={[currentPlace]}
+            predefinedPlaces={predefinedStart}
             // predefinedPlacesAlwaysVisible={true}
             styles={{
               textInput: {

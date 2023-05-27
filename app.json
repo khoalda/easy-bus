@@ -4,8 +4,8 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "jobsift",
-    "slug": "jobsift",
+    "name": "easybus",
+    "slug": "easybus",
     "splash": {
       "image": "./assets/Spash-screen.png",
       "resizeMode": "contain",

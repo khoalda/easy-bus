@@ -1,15 +1,19 @@
 import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./Welcome.style";
 import { icons } from "../../../constants";
+import { useRouter } from "expo-router";
 
-const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
+const Welcome = () => {
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleClick = () => {
+    if (searchTerm) {
+      router.push(`/find-route?search=${searchTerm}`);
+      setSearchTerm("")
+    }
+  };
+
   return (
     <View>
       <View style={styles.container}>
