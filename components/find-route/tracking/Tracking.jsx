@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { View, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
@@ -9,9 +9,18 @@ import { Image } from "react-native";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const Tracking = () => {
-  const mapRef = React.useRef(null);
+const Tracking = ({ initialEnd }) => {
+  const mapRef = useRef(null);
   const router = useRouter();
+  const endAutocompleteRef = useRef(null);
+
+  useEffect(() => {
+    console.log("focus")
+    if (initialEnd) {
+      endAutocompleteRef.current?.setAddressText(initialEnd);
+      endAutocompleteRef.current?.focus();
+    }
+  }, [initialEnd]);
 
   const [currentLocation, setCurrentLocation] = useState({
     latitude: 10.762622,
@@ -137,6 +146,7 @@ const Tracking = () => {
               });
             }}
             query={query}
+            ref={endAutocompleteRef}
             styles={{
               textInput: {
                 backgroundColor: COLORS.gray2,

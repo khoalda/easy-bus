@@ -27,7 +27,7 @@ const Home = () => {
             setSearchTerm={setSearchTerm}
             handleClick={() => {
               if (searchTerm) {
-                router.push(`/find-route/${searchTerm}`)
+                router.push(`/find-route?search=${searchTerm}`)
               }
             }}
           />

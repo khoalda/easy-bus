@@ -5,18 +5,11 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  FlatList,
 } from "react-native";
-import { useRouter } from "expo-router";
-
 import styles from "./Welcome.style";
-import { icons, SIZES } from "../../../constants";
-import { allStops } from "../../../constants/mockData";
+import { icons } from "../../../constants";
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
-  const [matchingStops, setMatchingStops] = useState([]);
-  const [showMatchingStops, setShowMatchingStops] = useState(false);
-
   return (
     <View>
       <View style={styles.container}>
@@ -30,35 +23,9 @@ const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
             value={searchTerm}
             onChangeText={(text) => {
               setSearchTerm(text);
-              // setMatchingStops(
-              //   allStops.filter((stop) =>
-              //     stop.toLowerCase().includes(text.toLowerCase())
-              //   )
-              // );
-              // setShowMatchingStops(text !== "" && matchingStops.length > 0);
             }}
             placeholder="Bạn muốn đi đến đâu?"
           />
-
-          {/* {showMatchingStops && (
-            <FlatList
-              data={matchingStops}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.matchingStopItem}
-                  onPress={() => {
-                    setSearchTerm(item);
-                    setMatchingStops([]);
-                    setShowMatchingStops(false);
-                  }}
-                >
-                  <Text>{item}</Text>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.ID}
-              style={styles.matchingStopsList}
-            />
-          )} */}
         </View>
 
         <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { COLORS, icons } from "../../constants";
 import { ScreenHeaderBtn } from "../../components";
 import { useRouter, Link } from "expo-router";
-import RouteCard from "../../components/find-route/route-card/RouteCard";
 import RouteRecomendation from "../../components/find-route/route-recomendation/RouteRecomendation";
 import axios from "axios";
 
