@@ -46,8 +46,6 @@ const Map = () => {
       if (mapRef.current) {
         mapRef.current.animateToRegion(region, 100); // 100 là thời gian (ms) để di chuyển đến vùng
       }
-      console.log(location);
-      console.log(region);
     })();
   }, []);
 

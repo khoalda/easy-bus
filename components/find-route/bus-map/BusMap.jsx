@@ -86,27 +86,28 @@ const BusMap = ({ points, type, path }) => {
           />
         ))}
 
-        {path && type === "single" ? (
-          <Polyline
-            coordinates={path}
-            strokeWidth={8}
-            strokeColor={COLORS.tertiary}
-          />
-        ) : (
-          Object.keys(path).map((key, index) => {
-            return (
-              <Polyline
-                key={key}
-                coordinates={path[key].map((item) => ({
-                  latitude: item.Latitude,
-                  longitude: item.Longitude,
-                }))}
-                strokeWidth={8}
-                strokeColor={pickColor(index)}
-              />
-            );
-          })
-        )}
+        {path &&
+          (type === "single" ? (
+            <Polyline
+              coordinates={path}
+              strokeWidth={8}
+              strokeColor={COLORS.tertiary}
+            />
+          ) : (
+            Object.keys(path).map((key, index) => {
+              return (
+                <Polyline
+                  key={key}
+                  coordinates={path[key].map((item) => ({
+                    latitude: item.Latitude,
+                    longitude: item.Longitude,
+                  }))}
+                  strokeWidth={8}
+                  strokeColor={pickColor(index)}
+                />
+              );
+            })
+          ))}
       </MapView>
 
       <TouchableOpacity

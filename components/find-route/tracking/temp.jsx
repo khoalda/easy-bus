@@ -68,8 +68,6 @@ const Tracking = () => {
       if (mapRef.current) {
         mapRef.current.animateToRegion(currentRegion, 100); // 100 là thời gian (ms) để di chuyển đến vùng
       }
-      console.log(location);
-      console.log(currentRegion);
     })();
   }, []);
 
@@ -179,8 +177,6 @@ const Tracking = () => {
               rankby: "distance",
             }}
             onPress={(data, details = null) => {
-              // 'details' is provided when fetchDetails = true
-              console.log(data, details);
               setEnd({
                 latitude: details.geometry.location.lat,
                 longitude: details.geometry.location.lng,
