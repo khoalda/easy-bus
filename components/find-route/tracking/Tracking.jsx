@@ -15,7 +15,6 @@ const Tracking = ({ initialEnd }) => {
   const endAutocompleteRef = useRef(null);
 
   useEffect(() => {
-    console.log("focus")
     if (initialEnd) {
       endAutocompleteRef.current?.setAddressText(initialEnd);
       endAutocompleteRef.current?.focus();
@@ -43,11 +42,17 @@ const Tracking = ({ initialEnd }) => {
     longitudeDelta: 0.0421,
   });
 
+  const currentPlace = {
+    description: "[Vị trí hiện tại]",
+    geometry: { location: { lat: currentLocation.latitude, lng: currentLocation.longitude } },
+  };
+
   const query = {
     key: "AIzaSyA8ROCsmNXGSZBUce4DDh2QVFDmMVhmi4g",
     language: "vi",
     types: "establishment",
     radius: 30000,
+    components: 'country:vn',
     location: `${currentLocation.latitude}, ${currentLocation.longitude}`,
   };
 
@@ -117,6 +122,8 @@ const Tracking = ({ initialEnd }) => {
               });
             }}
             query={query}
+            predefinedPlaces={[currentPlace]}
+            predefinedPlacesAlwaysVisible={true}
             styles={{
               textInput: {
                 backgroundColor: COLORS.gray2,
@@ -127,7 +134,7 @@ const Tracking = ({ initialEnd }) => {
                 width: "100%",
                 zIndex: 1,
               },
-              listView: { backgroundColor: "white" },
+              listView: { backgroundColor: "white", top: 50 },
             }}
           />
 
@@ -147,6 +154,8 @@ const Tracking = ({ initialEnd }) => {
             }}
             query={query}
             ref={endAutocompleteRef}
+            predefinedPlaces={[currentPlace]}
+            // predefinedPlacesAlwaysVisible={true}
             styles={{
               textInput: {
                 backgroundColor: COLORS.gray2,
