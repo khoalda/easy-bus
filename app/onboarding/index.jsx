@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   skipButton: {
-    paddingVertical: 15,
-    paddingHorizontal: 50,
+    paddingVertical: 40,
+    paddingHorizontal: 30,
     borderRadius: 5,
     marginLeft: "auto",
     text: {
