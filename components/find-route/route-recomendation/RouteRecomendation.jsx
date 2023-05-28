@@ -19,7 +19,7 @@ const RouteRecomendation = ({ recommendations, loading }) => {
         ) : recommendations.length === 0 ? (
           <Text>Không có dữ liệu</Text>
         ) : (
-          recommendations.map((route, index) => {
+          recommendations?.map((route, index) => {
             return (
               <RouteOption
                 key={index}

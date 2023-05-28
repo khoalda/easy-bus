@@ -93,11 +93,11 @@ const BusMap = ({ points, type, path }) => {
               strokeColor={COLORS.tertiary}
             />
           ) : (
-            Object.keys(path).map((key, index) => {
+            Object.keys(path)?.map((key, index) => {
               return (
                 <Polyline
                   key={key}
-                  coordinates={path[key].map((item) => ({
+                  coordinates={path[key]?.map((item) => ({
                     latitude: parseFloat(item.Latitude),
                     longitude: parseFloat(item.Longitude),
                   }))}
