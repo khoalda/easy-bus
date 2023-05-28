@@ -17,6 +17,7 @@ export default () => {
                 }} margin={true} />
             ),
             headerShadowVisible: false,
+            tabBarHideOnKeyboard: true,
         }} >
             <Tabs.Screen name="home" options={{
                 title: 'Tổng quan',
