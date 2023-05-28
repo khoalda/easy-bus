@@ -54,7 +54,7 @@ const Tracking = ({ initialEnd }) => {
   }, [initialEnd]);
 
   const query = {
-    key: "AIzaSyA8ROCsmNXGSZBUce4DDh2QVFDmMVhmi4g",
+    key: "API_KEY",
     language: "vi",
     types: "establishment",
     radius: 30000,
